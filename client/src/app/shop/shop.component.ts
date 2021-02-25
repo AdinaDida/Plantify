@@ -61,7 +61,6 @@ export class ShopComponent implements OnInit {
     }
     onSortSelected(sort:string)
     {
-      console.log(sort);
       this.shopParams.sort = sort;
       this.getProducts();
     }
