@@ -1,146 +1,131 @@
 [
   {
-    "Name": "Angular Speedster Board 2000",
+    "Name": "Succulent Jade Plant",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 200,
-    "PictureUrl": "images/products/sb-ang1.png",
-    "ProductTypeId": 1,
+    "PictureUrl": "images/products/succulent_1.png",
+    "ProductTypeId": 3,
     "ProductBrandId": 1
   },
   {
-    "Name": "Green Angular Board 3000",
+    "Name": "Aloe Magic Green",
     "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
     "Price": 150,
-    "PictureUrl": "images/products/sb-ang2.png",
-    "ProductTypeId": 1,
+    "PictureUrl": "images/products/flowers/succulent_2.png",
+    "ProductTypeId": 3,
     "ProductBrandId": 1
   },
   {
-    "Name": "Core Board Speed Rush 3",
+    "Name": "Ragwort Senecio cephalphorus",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 180,
-    "PictureUrl": "images/products/sb-core1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
+    "PictureUrl": "images/products/flowers/succulent_3.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 1
   },
   {
-    "Name": "Net Core Super Board",
+    "Name": "Fern Pteris albolineata",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 300,
-    "PictureUrl": "images/products/sb-core2.png",
+    "PictureUrl": "images/products/flowers/fern_1.png",
     "ProductTypeId": 1,
-    "ProductBrandId": 2
+    "ProductBrandId": 1
   },
   {
-    "Name": "React Board Super Whizzy Fast",
+    "Name": "Sword fern Nephrolepis 'Green Lady'",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 250,
-    "PictureUrl": "images/products/sb-react1.png",
+    "PictureUrl": "images/products/flowers/fern_2.png",
     "ProductTypeId": 1,
-    "ProductBrandId": 4
+    "ProductBrandId": 1
   },
   {
-    "Name": "Typescript Entry Board",
+    "Name": "Staghorn fern Platycerium bifurcatum",
     "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
     "Price": 120,
-    "PictureUrl": "images/products/sb-ts1.png",
+    "PictureUrl": "images/products/flowers/fern_3.png",
     "ProductTypeId": 1,
-    "ProductBrandId": 5
+    "ProductBrandId": 1
   },
   {
-    "Name": "Core Blue Hat",
+    "Name": "Areca palm Dypsis lutescens",
     "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 10,
-    "PictureUrl": "images/products/hat-core1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 2
+    "PictureUrl": "images/products/flowers/palm_1.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
   },
   {
-    "Name": "Green React Woolen Hat",
+    "Name": "Coconut palm Cocos nucifera",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 8,
-    "PictureUrl": "images/products/hat-react1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 4
+    "PictureUrl": "images/products/flowers/palm_2.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
   },
   {
-    "Name": "Purple React Woolen Hat",
+    "Name": "Mexican dwarf palm Chamaedorea elegans XL",
     "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 15,
-    "PictureUrl": "images/products/hat-react2.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 4
+    "PictureUrl": "images/products/flowers/palm_3.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
   },
   {
-    "Name": "Blue Code Gloves",
+    "Name": "Peace lily Spathiphyllum 'Bingo Cupido' white-green",
     "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
     "Price": 18,
-    "PictureUrl": "images/products/glove-code1.png",
-    "ProductTypeId": 4,
+    "PictureUrl": "images/products/flowers/spathiphyllum_1.png",
+    "ProductTypeId": 5,
     "ProductBrandId": 3
   },
   {
-    "Name": "Green Code Gloves",
+    "Name": "Bromelia Tillandsia 'Antonio' pink",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 15,
-    "PictureUrl": "images/products/glove-code2.png",
-    "ProductTypeId": 4,
+    "PictureUrl": "images/products/flowers/bromelia_1.png",
+    "ProductTypeId": 6,
     "ProductBrandId": 3
   },
   {
-    "Name": "Purple React Gloves",
+    "Name": "Bromelia Vriesea 'Era' green-red",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
     "Price": 16,
-    "PictureUrl": "images/products/glove-react1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
+    "PictureUrl": "images/products/flowers/bromelia_1.png",
+    "ProductTypeId": 6,
+    "ProductBrandId": 3
   },
   {
-    "Name": "Green React Gloves",
+    "Name": "Amaryllis 'Minerva' red-white",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 14,
-    "PictureUrl": "images/products/glove-react2.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
+    "PictureUrl": "images/products/flowers/amaryllis_1.png",
+    "ProductTypeId": 7,
+    "ProductBrandId": 3
   },
   {
-    "Name": "Redis Red Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 250,
-    "PictureUrl": "images/products/boot-redis1.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 6
-  },
-  {
-    "Name": "Core Red Boots",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 189.99,
-    "PictureUrl": "images/products/boot-core2.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Core Purple Boots",
+    "Name": "Ivy Hedera 'Goldchild'",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 199.99,
-    "PictureUrl": "images/products/boot-core1.png",
-    "ProductTypeId": 3,
+    "Price": 14,
+    "PictureUrl": "images/products/flowers/ivy_1.png",
+    "ProductTypeId": 7,
+    "ProductBrandId": 3
+  },
+  {
+    "Name": "Ivy Hedera 'Pittsburgh'",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 14,
+    "PictureUrl": "images/products/flowers/ivy_2.png",
+    "ProductTypeId": 2,
     "ProductBrandId": 2
   },
   {
-    "Name": "Angular Purple Boots",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 150,
-    "PictureUrl": "images/products/boot-ang2.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Angular Blue Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "PictureUrl": "images/products/boot-ang1.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 1
+    "Name": "Ivy Hedera 'Wonder'",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 14,
+    "PictureUrl": "images/products/flowers/ivy_3.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
   }
+
 ]

@@ -1,11 +1,13 @@
-<h1>Welcome to {{title}}</h1>
-<button class="btn btn-danger">AAA</button>
-<button class="btn btn-success">AAA</button>
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<app-nav-bar></app-nav-bar>
+
+<div class="container" style="margin-top: 140px;">
+    <h1>Welcome to {{title}}</h1>
+    <div class="row align-items-center justify-content-between ">
+        <div class="card col-xs-4" style="width: 18rem;" *ngFor="let product of products">
+            <img class="card-img-top" src="{{product.pictureUrl}}" alt="Card image cap">
+            <div class="card-body">
+            <p class="card-text">{{product.name}}</p>
+            </div>
+        </div>
+    </div>
 </div>
