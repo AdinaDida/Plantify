@@ -1,27 +1,33 @@
 <div class="container">
    <div class="row">
        <section class="col-3">
-        <h5 class="text-warning ml-3">Categories</h5>
+        <h5 class="text-dark ml-3">Sort By:</h5>
         <select class="custom-select mb-3">
             <option selected>Alphabetical</option>
             <option value="x">Price: Low to High</option>
             <option value="y">Price: High to Low</option>
         </select>
-            <h5 class="text-warning ml-3">Categories</h5>           
-        <ul class="list-group">
-            <li class="list-group-item active">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <h5 class="text-dark ml-3">Categories</h5>           
+        <ul class="list-group" >
+            <li class="list-group-item"
+            *ngFor="let brand of brands"
+            [value]="brand.id"
+            [class.active]="brand.id ===this.brandIdSelected"
+            (click)="onBrandSelected(brand.id)"
+            >
+            {{brand.name}}</li>
+            
           </ul>
-          <h5 class="text-warning ml-3">Plant Type</h5>           
-          <ul class="list-group">
-              <li class="list-group-item active">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li>
+          <h5 class="text-dark ml-3">Plant Type</h5>           
+          <ul class="list-group"  >
+              <li class="list-group-item" 
+              *ngFor="let type of types"
+              [class.active]="type.id ===this.typeIdSelected"
+              [value]="type.id"
+              (click)="onTypeSelected(type.id)"
+
+              >{{type.name}}</li>
+              
             </ul>
        </section>
 
