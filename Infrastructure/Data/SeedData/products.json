@@ -108,8 +108,8 @@
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 14,
     "PictureUrl": "images/products/flowers/ivy_1.png",
-    "ProductTypeId": 7,
-    "ProductBrandId": 3
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
   },
   {
     "Name": "Ivy Hedera 'Pittsburgh'",
