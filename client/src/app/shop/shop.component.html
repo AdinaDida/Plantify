@@ -1,14 +1,19 @@
 <div class="container" style="margin-top: 20px;">
    <div class="row">
        <section class="col-3">
+           <br>
         <h5 class="text-dark ml-3">Sort By:</h5>
+        <br>
         <select class="custom-select mb-3"  (change)="onSortSelected($event.target.value);">
             <option *ngFor="let sort of sortOptions"
             [value]="sort.value"
             >{{sort.name}}</option>
            
         </select>
-            <h5 class="text-dark ml-3">Categories</h5>           
+        <br>
+        <br>
+            <h5 class="text-dark ml-3">Categories</h5>   
+            <br>        
         <ul class="list-group" >
             <li class="list-group-item"
             *ngFor="let brand of brands"
@@ -19,7 +24,10 @@
             {{brand.name}}</li>
             
           </ul>
-          <h5 class="text-dark ml-3">Plant Type</h5>           
+          <br>
+          <br>
+          <h5 class="text-dark ml-3">Plant Type</h5> 
+          <br>          
           <ul class="list-group"  >
               <li class="list-group-item" 
               *ngFor="let type of types"
