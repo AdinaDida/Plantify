@@ -1,6 +1,7 @@
 <div class="container" style="margin-top: 20px;">
    <div class="row">
        <section class="col-3">
+        <ng-container *ngIf="types && brands">
            <br>
         <h5 class="text-dark ml-3">Sort By:</h5>
         <br>
@@ -38,6 +39,7 @@
               >{{type.name}}</li>
               
             </ul>
+            </ng-container>
        </section>
 
        <section class="col-9">
@@ -48,7 +50,7 @@
            [pageNumber] = "this.shopParams.pageNumber">
 
            </app-paging-header>
-            <div class="form-inline mt-12">
+            <div class="form-inline mt-12" *ngIf="products">
                 <input (keyup.enter)="onSearch()" type="text" style="width:300px" #search placeholder="search" class="form-control my-2">
                 <button (click)="onSearch()" class="btn btn-outline-primary ml-2 my-2">Search</button>
                 <button (click)="onReset()" class="btn btn-outline-success my-2 ml-2">Reset</button>
