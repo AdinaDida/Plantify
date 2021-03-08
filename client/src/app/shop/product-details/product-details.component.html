@@ -9,11 +9,10 @@
             <p style="font-size: 1.25em;">{{product.price | currency}}</p>
             <br>
             <div class="d-flex justify-content-start align-items-center">
-                <i  class="fa fa-minus-circle text-warning mr-2" style="cursor: pointer; font-size: 2em;"></i>
-                <span class="font-weight-bold" style="font-size: 1.5em;"> 2 </span>
-                <i  class="fa fa-plus-circle text-warning mx-2" style="cursor: pointer; font-size: 2em;"></i>
-                <button  class="btn btn-outline-primary btn-lg ml-4">Add to Cart</button>
-                
+                <i (click)="decrementQuantity()" class="fa fa-minus-circle text-success mr-2" style="cursor: pointer; font-size: 2em;"></i>
+                <span class="font-weight-bold" style="font-size: 1.5em;">{{quantity}}</span>
+                <i (click)="incrementQuantity()" class="fa fa-plus-circle text-success mx-2" style="cursor: pointer; font-size: 2em;"></i>
+                <button (click)="addItemToBasket()" class="btn btn-outline-primary btn-lg ml-4">Add to Cart</button>
             </div>
             <div class="row mt-5">
                 <div class="col-12">
