@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AccountService } from './account/account.service';
 import { BasketService } from './basket/basket.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { BasketService } from './basket/basket.service';
 export class AppComponent implements OnInit {
   title = 'Plantify';
 
-  public constructor(private titleService: Title, private basketService: BasketService) { }
+  public constructor(private titleService: Title, private basketService: BasketService, private accountService: AccountService) { }
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
@@ -20,6 +21,18 @@ export class AppComponent implements OnInit {
   ngOnInit(): void{
     this.setTitle(this.title);
     this.loadBasket();
+    this.loadCurrentUser();
+  }
+
+  loadCurrentUser(){
+    const token = localStorage.getItem('token');
+    if(token){
+      this.accountService.loadCurrentUser(token).subscribe(() => {
+        console.log('loaded user');
+      }, error => {
+        console.log(error);
+      });
+    }
   }
 
   loadBasket() {
