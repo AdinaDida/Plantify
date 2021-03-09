@@ -1,11 +1,9 @@
-﻿using AutoMapper;
-using Core.Interfaces;
+﻿using System.Threading.Tasks;
+using API.Dtos;
+using AutoMapper;
 using Core.Models;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {
@@ -28,7 +26,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket)
+        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
         {
             var customerBasket = _mapper.Map<CustomerBasket>(basket);
 
