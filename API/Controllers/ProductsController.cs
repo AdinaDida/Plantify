@@ -33,6 +33,8 @@ namespace API.Controllers
 
         }
 
+
+
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDTO>>> GetProducts(
             [FromQuery] ProductSpecParams productParams)
