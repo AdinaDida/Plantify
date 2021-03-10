@@ -87,6 +87,7 @@ export class BasketService {
     this.basketTotalSource.next(null);
     localStorage.removeItem('basket_id');
   }
+
   deleteBasket(basket: IBasket) {
     return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe(() => {
       this.basketSource.next(null);
@@ -94,7 +95,7 @@ export class BasketService {
       localStorage.removeItem('basket_id');
     }, error => {
       console.log(error);
-    });
+    })
   }
   private mapProductItemToBasketItem(item: IProduct, quantity: number): IBasketItem {
     return {
