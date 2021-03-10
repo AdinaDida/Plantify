@@ -25,7 +25,7 @@ import { TextInputComponent } from './components/text-input/text-input.component
     OrderTotalsComponent,
     ReactiveFormsModule,
     BsDropdownModule,
-    TextInputComponent
+    TextInputComponent,
   ]
 })
 export class SharedModule { }

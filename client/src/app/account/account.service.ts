@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { IAddress } from '../models/address';
 import { IUser } from '../models/user';
 
 @Injectable({
@@ -11,59 +12,67 @@ import { IUser } from '../models/user';
 })
 export class AccountService {
   baseUrl = environment.apiUrl;
-  private currentUserSource = new BehaviorSubject<IUser>(null);
+  private currentUserSource = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getCurrentValue(){
-    return this.currentUserSource.value;
-  }
+  loadCurrentUser(token: string) {
+    if (token == null) {
+      this.currentUserSource.next(null);
+      return of(null);
+    }
 
-  loadCurrentUser(token: string){
     let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ${token}');
+    headers = headers.set('Authorization', `Bearer ${token}`);
 
     return this.http.get(this.baseUrl + 'account', {headers}).pipe(
       map((user: IUser) => {
-        if (user){
+        if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
         }
       })
-    );
+    )
   }
 
-  login(value: any){
-    return this.http.post(this.baseUrl + 'account/login', value).pipe(
+  login(values: any) {
+    return this.http.post(this.baseUrl + 'account/login', values).pipe(
       map((user: IUser) => {
-        if (user){
+        if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
         }
       })
-    );
+    )
   }
 
-  register(value: any){
-    return this.http.post(this.baseUrl + 'account/register', value).pipe(
+  register(values: any) {
+    return this.http.post(this.baseUrl + 'account/register', values).pipe(
       map((user: IUser) => {
-        if (user){
+        if (user) {
           localStorage.setItem('token', user.token);
+          this.currentUserSource.next(user);
         }
       })
-    );
+    )
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     this.currentUserSource.next(null);
     this.router.navigateByUrl('/');
   }
 
-
-  checkEmailExists(email:string){
-    return this.http.get(this.baseUrl + '/account/emailexists?email=' + email)
+  checkEmailExists(email: string) {
+    return this.http.get(this.baseUrl + 'account/emailexists?email=' + email);
   }
 
+  // getUserAddress() {
+  //   return this.http.get<IAddress>(this.baseUrl + 'account/address');
+  // }
+
+  // updateUserAddress(address: IAddress) {
+  //   return this.http.put<IAddress>(this.baseUrl + 'account/address', address);
+  // }
 }
