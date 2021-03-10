@@ -1,4 +1,22 @@
-
+<div class="mt-4" [formGroup]="checkoutForm">
+    <h4 class="mb-3">Choose your payment method</h4>
+    <br>
+    <div class="row" formGroupName="deliveryForm">
+        <div class="col-6 form-group" style="margin-left:50px" >
+            <input type="radio"
+                id="pay"
+                value="payOnDelivery"
+                class="custom-control-input"
+            >
+            <label for="pay" class="custom-control-label">
+                <strong>Pay on delivery </strong>
+                <br />
+                <span class="label-description"><small>Cash or card</small></span>
+            </label>
+        </div>
+    </div>
+</div>
+<br>
 <div class="float-none d-flex justify-content-between flex-column flex-lg-row mb-5">
     <button class="btn btn-outline-primary" cdkStepperPrevious>
         <i class="fa fa-angle-left"></i> Back Review
