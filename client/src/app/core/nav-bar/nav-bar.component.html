@@ -1,9 +1,13 @@
 <header  style="position:absolute" class="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm fixed-top">
-    <img src="/assets/images/logo.png" class="logo" routerLink="/" style="max-height: 70px;" alt="logo">
+    <div class="d-flex">
+        <img src="/assets/images/logo.png" class="logo" routerLink="/" style="max-height: 70px;" alt="logo">
+        <p><strong>Plantify</strong></p>
+    </div>
+
     <nav class="my-2 my-md-0 me-md-3">
         <a class="p-2 " routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
         <a class="p-2 " routerLink="/shop" routerLinkActive="active"> Shop</a>
-        <a class="p-2 "routerLink="/test-error" routerLinkActive="active" href="#">Errors</a>
+        <!-- <a class="p-2 "routerLink="/test-error" routerLinkActive="active" href="#">Errors</a> -->
     </nav>
     <div class="d-flex align-items-center">
         <a routerLink='/basket' class="position-relative">
@@ -13,7 +17,7 @@
 
         <ng-container *ngIf="(currentUser$ | async) === null">
             <a routerLink="/account/login" class="btn btn-outline-secondary mr-2">Login</a>
-            <a routerLink="/account/register" class="btn btn-outline-secondary mr-3">Sign up</a>
+            <a routerLink="/account/register" class="btn btn-outline-secondary mr-3">Register</a>
         </ng-container>
 
         <ng-container *ngIf="currentUser$ | async">
