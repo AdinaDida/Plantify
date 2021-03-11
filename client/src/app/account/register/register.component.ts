@@ -28,7 +28,10 @@ export class RegisterComponent implements OnInit {
         .pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
         [this.validateEmailNotTaken()]
       ],
-      password: [null, Validators.required]
+      password: [null, Validators.required],
+      confirm_password: ['', [Validators.required]]
+    }, {
+      validator: ConfirmedValidator('password', 'confirm_password')
     });
   }
 
@@ -59,3 +62,20 @@ export class RegisterComponent implements OnInit {
   }
 
 }
+
+
+function ConfirmedValidator(controlName: string, matchingControlName: string){
+  return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+      if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+          return;
+      }
+      if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({ confirmedValidator: true });
+      } else {
+          matchingControl.setErrors(null);
+      }
+  }
+}
+

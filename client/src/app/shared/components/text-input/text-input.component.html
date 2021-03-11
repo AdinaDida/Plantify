@@ -17,6 +17,10 @@
         
     </div>
 
+    <div *ngIf="controlDir.control.touched && controlDir.control.invalid" class="invalid-feedback">
+        <span *ngIf="controlDir.control.errors.confirmedValidator">Passwords don't match!</span>
+    </div>
+
     <div class="invalid-feedback d-block" *ngIf="(!controlDir?.control?.valid && controlDir?.control?.dirty)" >
         <span *ngIf="controlDir.control.errors?.emailExists">Email address is in use!</span>
     </div>
