@@ -36,7 +36,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     private toastr: ToastrService, private router: Router) { }
 
   ngAfterViewInit(): void {
-    this.stripe = Stripe('pk_test_2PZ84pFKu2MddUgGDG521v9m00SlLWySIR');
+    this.stripe = Stripe('pk_test_51IUUqkCKwV3acezm5dxk3HLRPUiBV3m3bSoULlu9oxP707thqtK8sf2cGFOcZxV6EAVeKgcBClQJxthsVI9Nq6wu00rcvhXFh5');
     const elements = this.stripe.elements();
 
     this.cardNumber = elements.create('cardNumber');
@@ -83,7 +83,7 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
       const createdOrder = await this.createOrder(basket);
       const paymentResult = await this.confirmPaymentWithStripe(basket);
       if (paymentResult.paymentIntent) {
-        this.basketService.deleteLocalBasket(basket.id);
+        this.basketService.deleteBasket(basket);
         const navigationExtras: NavigationExtras = { state: createdOrder };
         this.router.navigate(['checkout/success'], navigationExtras);
       } else {
