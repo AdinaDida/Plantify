@@ -2,11 +2,12 @@
     <div class="d-flex justify-content-between align-items-center">
         <h4>Shipping address</h4>
         <button 
-            class="btn btn-outline-success mb-3"
-            (click)="saveUserAddress()" 
-            [disabled]="!checkoutForm.get('addressForm').valid || !checkoutForm.get('addressForm').dirty">
-            Save as default address
-        </button>
+        (click)="saveUserAddress()" 
+        class="btn btn-outline-success mb-3"
+        [disabled]="!checkoutForm.get('addressForm').valid || !checkoutForm.get('addressForm').dirty"
+    >
+        Save as default address
+    </button>
     </div>
     <div class="row" formGroupName="addressForm">
         <div class="form-group col-6">
@@ -34,7 +35,7 @@
     <button class="btn btn-outline-primary" routerLink="/basket">
         <i class="fa fa-angle-left"></i> Back to basket
     </button>
-    <button class="btn btn-primary" cdkStepperNext>
+    <button [disabled]="checkoutForm.get('addressForm').invalid" class="btn btn-primary" cdkStepperNext>
         Go to delivery <i class="fa fa-angle-right"></i>
     </button>
 </div>
