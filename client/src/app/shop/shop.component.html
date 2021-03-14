@@ -5,7 +5,7 @@
                 <br>
                 <h5 class="text-dark ml-3">Sort By:</h5>
                 <br>
-                <select class="custom-select mb-3"  (change)="onSortSelected($event.target.value)">
+                <select class="custom-select mb-3 sort-by"  (change)="onSortSelected($event.target.value)">
                     <option *ngFor="let sort of sortOptions"
                         [selected]="shopParams.sort === sort.value"
                         [value]="sort.value">
