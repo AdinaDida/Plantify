@@ -16,7 +16,7 @@ using API.Helpers;
 
 namespace API.Controllers
 {
-    
+
     public class ProductsController : BaseApiController
     {
         private readonly IGenericRepository<Product> _productsRepo;
@@ -34,7 +34,7 @@ namespace API.Controllers
         }
 
 
-
+        [Cached(600)]
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDTO>>> GetProducts(
             [FromQuery] ProductSpecParams productParams)
@@ -53,6 +53,8 @@ namespace API.Controllers
             return Ok(new Pagination<ProductToReturnDTO>(productParams.PageIndex, productParams.PageSize, totalItems, data));
         }
 
+
+        [Cached(600)]
         [HttpGet("brands")]
         public async Task<ActionResult<List<ProductBrand>>> GetProductBrands()
         {
@@ -60,6 +62,8 @@ namespace API.Controllers
             return Ok(productBrands);
         }
 
+
+        [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<List<ProductType>>> GetProductTypes()
         {
@@ -67,7 +71,7 @@ namespace API.Controllers
             return Ok(productTypes);
         }
 
-
+        [Cached(600)]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
