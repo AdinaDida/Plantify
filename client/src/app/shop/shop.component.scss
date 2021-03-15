@@ -1,0 +1,26 @@
+.list-group-item {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1.1em;
+
+    &:focus {
+        outline: none;
+    }
+
+
+    &:not(.active):hover {
+        color: #fff;
+        background-color: #4bbf73;
+    }
+}
+
+.sort-by{
+    background-color: black;
+    color: #fff;
+
+
+    &:not(.active):hover {
+        color: black;
+        background-color: #fff;
+    }
+}
