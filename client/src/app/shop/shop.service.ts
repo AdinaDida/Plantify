@@ -111,17 +111,20 @@ export class ShopService {
       })
     );
   }
-  getReviews()
-  {
+
+
+  getReviews(){
     return this.http.get<IProductReview[]>(this.baseUrl + 'reviews');
   }
-  getProductReviews(id: number)
-  {
+
+
+  getProductReviews(id: number){
     return this.http.get<IProductReview[]>(this.baseUrl + 'reviews/' + id);
   }
-  createReview(review: IProductReview)
-  {
-    return this.http.post<IProductReview[]>(this.baseUrl + 'reviews/add', review);
+
+
+  createReview(review: IProductReview){
+    return this.http.post<IProductReview>(this.baseUrl + 'reviews/add', review);
   }
 
 }

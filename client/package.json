@@ -24,6 +24,7 @@
     "bootstrap": "^4.6.0",
     "bootswatch": "^4.6.0",
     "font-awesome": "^4.7.0",
+    "ng-starrating": "^1.0.20",
     "ngx-bootstrap": "^6.2.0",
     "ngx-paypal": "^7.0.0",
     "ngx-spinner": "^10.0.1",

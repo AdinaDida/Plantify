@@ -6,6 +6,7 @@
         <div class="col-6" style="margin-top:20px">
             <h2>{{product.name}}</h2>
             <br>
+            <star-rating [totalstars]='5' value='{{this.average}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='false' ></star-rating>
             <p style="font-size: 1.25em;">{{product.price | currency}}</p>
             <br>
             <div class="d-flex justify-content-start align-items-center">
@@ -20,21 +21,14 @@
                     <p>{{product.description}}</p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="well well-sm">
-                    <div class="text-right">
-                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="display: none;">Leave a Review</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 <hr>
 <div class="container mt-5 align-items-center" style="margin-top:10px">
-        <div class="row" id="post-review-box" style="">
+        <div class="row" id="post-review-box" >
             <div class="col-md-7 offset-3">
-                <H5>Leave a review</H5>
+                <h5>Leave a review</h5>
                 <div
                 [formGroup]="reviewForm"
                 class="form-group">
@@ -44,7 +38,15 @@
                     <input class="form-control" type="text" placeholder="Title" formControlName="title" >
                     <br>
                     <textarea class="form-control animated" cols="50" id="new-review" name="comment"  formControlName="description" placeholder="Enter your review here..." rows="5" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 54px;"></textarea>
-    
+                    <br>
+                    <div style="text-align:center">
+                        <h1>
+                            Rating
+                        </h1>
+                        <star-rating [totalstars]='5' value="0" checkedcolor="gold" uncheckedcolor="gray" size="24px" readonly="false" (rate)="onRate($event)"></star-rating>
+                    </div>
+
+                    
                     <div class="text-right">
                         <br>
                         <div class="stars starrr" data-rating="0"><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span></div>
@@ -53,16 +55,17 @@
                     </div>
                 </div>
                 <div class="review-block" *ngIf="reviews != undefined" style="display:inline-block;">
-                    <H5>Reviews:</H5>
+                    <h5>Reviews:</h5>
                     <hr>
                     <div class="row" *ngFor="let review of reviews">
-                        <div class="card mb-3" style="margin-left:15px;border:none; background-color:rgba(197, 197, 188, 0.233)">
+                        <div class="card mb-3" style="width:650px; margin-left:15px; border:none; background-color:#d5dadf7e">
                             <div class="card-body">
-                              <h5 class="card-title">{{review.title}}</h5>
-                              <p class="card-text">{{review.description}}</p>
-                              <footer class="blockquote-footer">{{review.username}}</footer>
+                                <star-rating [totalstars]='5' value='{{review.rating}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='true' ></star-rating>
+                                <h5 class="card-title">{{review.title}}</h5>
+                                <p class="card-text">{{review.description}}</p>
+                                <footer class="blockquote-footer">{{review.username}}</footer>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>

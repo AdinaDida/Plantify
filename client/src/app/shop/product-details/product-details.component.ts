@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { StarRatingComponent } from 'ng-starrating';
 import { BasketService } from 'src/app/basket/basket.service';
 import { IProduct } from 'src/app/models/product';
 import { IProductReview } from 'src/app/models/productReview';
@@ -18,16 +19,17 @@ export class ProductDetailsComponent implements OnInit {
   reviews: IProductReview[];
   reviewForm : FormGroup;
   review: IProductReview;
-  average = 0;
+  average: number;
+  rating = 0;
 
   constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute,
-              private bcService: BreadcrumbService, private basketService: BasketService,private fb: FormBuilder,) {
-    this.bcService.set('@productDetails', ' ')
+    private bcService: BreadcrumbService, private basketService: BasketService,private fb: FormBuilder,) {
+      this.bcService.set('@productDetails', ' ')
   }
 
   ngOnInit(): void {
-    this.createReviewForm();
     this.loadProduct();
+    this.createReviewForm();
     this.loadReviews();
     if(this.reviews){
       this.calculateAverage(this.reviews);
@@ -42,22 +44,20 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
-  createReview()
-  {
-    this.review = {
-      rating:5,
-      productId :+this.activatedRoute.snapshot.paramMap.get('id'),
-      username : this.reviewForm.get('username').value,
-      description : this.reviewForm.get('description').value,
-      title : this.reviewForm.get('title').value,
-     }
-     this.shopService.createReview(this.review).toPromise().then(reviews => this.reviews = reviews);
-     this.reviewForm.reset();
-     
+  createReview(){
+  this.review = {
+    rating: this.rating,
+    productId :+this.activatedRoute.snapshot.paramMap.get('id'),
+    username : this.reviewForm.get('username').value,
+    description : this.reviewForm.get('description').value,
+    title : this.reviewForm.get('title').value,
+  }
+  this.shopService.createReview(this.review).toPromise().then(x => this.loadReviews());
+  this.calculateAverage(this.reviews);
+  this.reviewForm.reset();
   }
 
-  onCancel()
-  {
+  onCancel(){
     this.reviewForm.reset();
     this.loadReviews();
   }
@@ -71,17 +71,18 @@ export class ProductDetailsComponent implements OnInit {
     });
     
   }
-  loadReviews()
-  {
-    
+
+
+  loadReviews(){
     this.shopService.getProductReviews(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe(reviews => {
       this.reviews = reviews;
+      this.average = this.calculateAverage(reviews);
+      console.log(this.reviews);
+      console.log("loading reviews");
     }, error => {
       console.log(error);
     });
-    console.log(this.reviews);
-    console.log("loading reviews");
-    
+
 
   }
 
@@ -111,6 +112,13 @@ export class ProductDetailsComponent implements OnInit {
     console.log("___________________________")
     console.log(this.average);
     console.log("___________________________")
+
+    return this.average;
+  }
+
+  onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}){
+    this.rating = +$event.newValue;
+    
   }
 
 }
