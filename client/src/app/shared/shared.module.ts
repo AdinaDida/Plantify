@@ -32,11 +32,10 @@ import { RouterModule } from '@angular/router';
     PagerComponent, 
     CarouselModule, 
     OrderTotalsComponent,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     BsDropdownModule,
     TextInputComponent,
-    FormsModule,
     CdkStepperModule,
     StepperComponent,
     BasketSummaryComponent

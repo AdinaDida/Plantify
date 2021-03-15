@@ -11,7 +11,7 @@ namespace Core.Interfaces
     {
         Task<IReadOnlyList<ProductReview>> GetProductReviews();
         Task<IReadOnlyList<ProductReview>> GetProductReviewsByProduct(int id);
-        Task<ProductReview> CreateProductReview(ProductReview review);
+        Task<IReadOnlyList<ProductReview>> CreateProductReview(ProductReview review);
 
     }
 }

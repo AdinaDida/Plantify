@@ -121,7 +121,7 @@ export class ShopService {
   }
   createReview(review: IProductReview)
   {
-    return this.http.post(this.baseUrl + 'reviews/add', review);
+    return this.http.post<IProductReview[]>(this.baseUrl + 'reviews/add', review);
   }
 
 }

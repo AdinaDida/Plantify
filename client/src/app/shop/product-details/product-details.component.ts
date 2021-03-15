@@ -18,6 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   reviews: IProductReview[];
   reviewForm : FormGroup;
   review: IProductReview;
+  average = 0;
 
   constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute,
               private bcService: BreadcrumbService, private basketService: BasketService,private fb: FormBuilder,) {
@@ -25,16 +26,19 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createReviewForm();
     this.loadProduct();
     this.loadReviews();
-    this.createReviewForm();
+    if(this.reviews){
+      this.calculateAverage(this.reviews);
+    }
   }
 
   createReviewForm() {
     this.reviewForm = this.fb.group({
-        username: [null, Validators.required],
-        description: [null, Validators.required],
-        title: [null, Validators.required],
+      username: [null, Validators.required],
+      description: [null, Validators.required],
+      title: [null, Validators.required],
     })
   }
 
@@ -47,9 +51,9 @@ export class ProductDetailsComponent implements OnInit {
       description : this.reviewForm.get('description').value,
       title : this.reviewForm.get('title').value,
      }
-     this.shopService.createReview(this.review).toPromise();
-     this.loadReviews();
+     this.shopService.createReview(this.review).toPromise().then(reviews => this.reviews = reviews);
      this.reviewForm.reset();
+     
   }
 
   onCancel()
@@ -69,12 +73,16 @@ export class ProductDetailsComponent implements OnInit {
   }
   loadReviews()
   {
-    console.log("loading reviews");
+    
     this.shopService.getProductReviews(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe(reviews => {
       this.reviews = reviews;
     }, error => {
       console.log(error);
     });
+    console.log(this.reviews);
+    console.log("loading reviews");
+    
+
   }
 
   addItemToBasket() {
@@ -91,5 +99,18 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  
+  calculateAverage(allReviews){
+    let allRatings = 0;
+    let count = 0;
+    for(let r of allReviews){
+      allRatings += r.rating;
+      count++;
+    }
+    this.average = allRatings/count;
+    console.log("___________________________")
+    console.log(this.average);
+    console.log("___________________________")
+  }
 
 }

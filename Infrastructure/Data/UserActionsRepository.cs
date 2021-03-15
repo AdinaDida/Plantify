@@ -18,11 +18,11 @@ namespace Infrastructure.Data
             this._context = context;
         }
 
-        public async Task<ProductReview> CreateProductReview(ProductReview review)
+        public async Task<IReadOnlyList<ProductReview>> CreateProductReview(ProductReview review)
         {
             _context.ProductReviews.Add(review);
             await _context.SaveChangesAsync();
-            return review;
+            return _context.ProductReviews.ToList();
         }
 
         public async Task<IReadOnlyList<ProductReview>> GetProductReviews()
