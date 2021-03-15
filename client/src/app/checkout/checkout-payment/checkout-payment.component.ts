@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
+import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { ToastrService } from 'ngx-toastr';
 import { BasketService } from 'src/app/basket/basket.service';
 import { IBasket } from 'src/app/models/basket';
@@ -16,7 +17,7 @@ declare var Stripe;
 })
 
 
-export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
+export class CheckoutPaymentComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() checkoutForm: FormGroup;
   @ViewChild('cardNumber', { static: true }) cardNumberElement: ElementRef;
   @ViewChild('cardExpiry', { static: true }) cardExpiryElement: ElementRef;
@@ -31,6 +32,11 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   cardNumberValid = false;
   cardExpiryValid = false;
   cardCvcValid = false;
+
+  ngOnInit(): void
+  {
+
+  }
 
   constructor(private basketService: BasketService, private checkoutService: CheckoutService,
     private toastr: ToastrService, private router: Router) { }
@@ -120,5 +126,6 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
       shipToAddress: this.checkoutForm.get('addressForm').value
     };
   }
+  
 
 }

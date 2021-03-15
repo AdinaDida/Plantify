@@ -21,6 +21,7 @@ namespace Core.Models
         public int ProductTypeId { get; set; }
         public int ProductBrandId { get; set; }
         public ProductBrand ProductBrand { get; set; }
+        public List<ProductReview> ProductReviews { get; set; }
     }
 }
 

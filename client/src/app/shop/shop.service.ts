@@ -7,6 +7,7 @@ import {map} from 'rxjs/operators';
 import { ShopParams } from '../models/shopParams';
 import { IProduct } from '../models/product';
 import { environment } from 'src/environments/environment';
+import { IProductReview } from '../models/productReview';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,17 @@ export class ShopService {
   getTypes()
   {
     return this.http.get<IType[]>(this.baseUrl + 'products/types');
+  }
+  getReviews()
+  {
+    return this.http.get<IProductReview[]>(this.baseUrl + 'reviews');
+  }
+  getProductReviews(id: number)
+  {
+    return this.http.get<IProductReview[]>(this.baseUrl + 'reviews/' + id);
+  }
+  createReview(review: IProductReview)
+  {
+    return this.http.post(this.baseUrl + 'reviews/add', review);
   }
 }

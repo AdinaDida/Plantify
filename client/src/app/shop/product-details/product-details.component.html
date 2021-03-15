@@ -20,7 +20,54 @@
                     <p>{{product.description}}</p>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="well well-sm">
+                    <div class="text-right">
+                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="display: none;">Leave a Review</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container mt-5 align-items-center" style="margin-top:10px">
+        <div class="row" id="post-review-box" style="">
+            <div class="col-md-7 offset-3">
+                <H5>Leave a review</H5>
+                <div
+                [formGroup]="reviewForm"
+                class="form-group">
+                    <input id="ratings-hidden" name="rating" type="hidden"> 
+                    <input class="form-control " type="text" placeholder="Your name" formControlName="username">
+                    <br>
+                    <input class="form-control" type="text" placeholder="Title" formControlName="title" >
+                    <br>
+                    <textarea class="form-control animated" cols="50" id="new-review" name="comment"  formControlName="description" placeholder="Enter your review here..." rows="5" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 54px;"></textarea>
+    
+                    <div class="text-right">
+                        <br>
+                        <div class="stars starrr" data-rating="0"><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span></div>
+                        <button class="btn btn-danger btn-sm"  (click)="onCancel()">Cancel</button>
+                        <button class="btn btn-success btn-sm" style="margin-left:10px"type="button" (click)="createReview()">Save</button>
+                    </div>
+                </div>
+                <div class="review-block" *ngIf="reviews != undefined" style="display:inline-block;">
+                    <H5>Reviews:</H5>
+                    <hr>
+                    <div class="row" *ngFor="let review of reviews">
+                        <div class="card mb-3" style="margin-left:15px;border:none; background-color:rgba(197, 197, 188, 0.233)">
+                            <div class="card-body">
+                              <h5 class="card-title">{{review.title}}</h5>
+                              <p class="card-text">{{review.description}}</p>
+                              <footer class="blockquote-footer">{{review.username}}</footer>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
         
     </div>
-</div>
+    
