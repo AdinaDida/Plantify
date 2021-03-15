@@ -15,7 +15,7 @@ namespace Infrastructure.Data
 
         public UserActionsRepository(StoreContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public async Task<ProductReview> CreateProductReview(ProductReview review)

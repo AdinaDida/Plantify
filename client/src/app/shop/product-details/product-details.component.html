@@ -26,51 +26,53 @@
 </div>
 <hr>
 <div class="container mt-5 align-items-center" style="margin-top:10px">
-        <div class="row" id="post-review-box" >
-            <div class="col-md-7 offset-3">
-                <h5>Leave a review</h5>
-                <div
+    <div class="row" id="post-review-box" >
+        <div class="col-md-5 offset-3">
+            <h5 style="text-align:center">Leave a review:</h5>
+            <br>
+            <br>
+            <div
                 [formGroup]="reviewForm"
                 class="form-group">
-                    <input id="ratings-hidden" name="rating" type="hidden"> 
-                    <input class="form-control " type="text" placeholder="Your name" formControlName="username">
-                    <br>
-                    <input class="form-control" type="text" placeholder="Title" formControlName="title" >
-                    <br>
-                    <textarea class="form-control animated" cols="50" id="new-review" name="comment"  formControlName="description" placeholder="Enter your review here..." rows="5" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 54px;"></textarea>
-                    <br>
-                    <div style="text-align:center">
-                        <h1>
-                            Rating
-                        </h1>
-                        <star-rating [totalstars]='5' value="0" checkedcolor="gold" uncheckedcolor="gray" size="24px" readonly="false" (rate)="onRate($event)"></star-rating>
+                    <div style="display: flex;">
+                        <h6 style="margin-top: 15px;">Rating:</h6>
+                        <star-rating style="margin-left: 15px;" [totalstars]='5' value="{{this.rating}}" checkedcolor="gold" uncheckedcolor="gray" size="30px" readonly="false" (rate)="onRate($event)"></star-rating>
                     </div>
-
-                    
+                    <br>
+                    <input id="ratings-hidden" name="rating" type="hidden"> 
+                    <input class="form-control " type="text" placeholder="Your name" formControlName="username" style="width: 445px;">
+                    <br>
+                    <input class="form-control" type="text" placeholder="Title" formControlName="title" style="width: 445px;" >
+                    <br>
+                    <textarea class="form-control animated" cols="50" id="new-review" name="comment"  formControlName="description" placeholder="Enter your review here..." rows="5" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; width: auto;"></textarea>
                     <div class="text-right">
                         <br>
                         <div class="stars starrr" data-rating="0"><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span></div>
-                        <button class="btn btn-danger btn-sm"  (click)="onCancel()">Cancel</button>
-                        <button class="btn btn-success btn-sm" style="margin-left:10px"type="button" (click)="createReview()">Save</button>
+                        <button class="btn btn-danger btn-sm"  (click)="onCancel()" type="submit">Cancel</button>
+                        <button class="btn btn-success btn-sm" style="margin-left:10px" type="submit" (click)="createReview()">Save</button>
                     </div>
-                </div>
-                <div class="review-block" *ngIf="reviews != undefined" style="display:inline-block;">
-                    <h5>Reviews:</h5>
-                    <hr>
-                    <div class="row" *ngFor="let review of reviews">
-                        <div class="card mb-3" style="width:650px; margin-left:15px; border:none; background-color:#d5dadf7e">
-                            <div class="card-body">
-                                <star-rating [totalstars]='5' value='{{review.rating}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='true' ></star-rating>
-                                <h5 class="card-title">{{review.title}}</h5>
-                                <p class="card-text">{{review.description}}</p>
-                                <footer class="blockquote-footer">{{review.username}}</footer>
-                            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container mt-5 align-items-center" style="margin-top:10px">
+    <div class="container mt-5 align-items-center" style="margin-top:10px">
+        <div class="col-md-7 offset-3">
+            <div class="review-block" *ngIf="reviews != undefined" style="display:inline-block;">
+                <h5>Reviews:</h5>
+                <div class="row" *ngFor="let review of reviews">
+                    <div class="card mb-3" style="width:650px; margin-left:15px; border:none; background-color:#d5dadf7e">
+                        <div class="card-body">
+                            <star-rating [totalstars]='5' value='{{review.rating}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='true' ></star-rating>
+                            <h5 class="card-title">{{review.title}}</h5>
+                            <p class="card-text"><i>"{{review.description}}"</i></p>
+                            <footer class="blockquote-footer">{{review.username}}</footer>
                         </div>
                     </div>
                 </div>
             </div>
-            
         </div>
-        
     </div>
-    
+</div>

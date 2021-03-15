@@ -24,7 +24,7 @@ namespace API.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SkiNet API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Plantify API v1");
             });
 
             return app;

@@ -55,9 +55,11 @@ export class ProductDetailsComponent implements OnInit {
   this.shopService.createReview(this.review).toPromise().then(x => this.loadReviews());
   this.calculateAverage(this.reviews);
   this.reviewForm.reset();
+  this.rating = 0;
   }
 
   onCancel(){
+    this.rating = 0;
     this.reviewForm.reset();
     this.loadReviews();
   }
