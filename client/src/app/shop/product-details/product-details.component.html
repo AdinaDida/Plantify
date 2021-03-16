@@ -6,14 +6,20 @@
         <div class="col-6" style="margin-top:20px">
             <h2>{{product.name}}</h2>
             <br>
-            <star-rating [totalstars]='5' value='{{this.average}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='false' ></star-rating>
+            <div class="d-flex">
+                <star-rating [totalstars]='5' value='{{this.average}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='false' ></star-rating>
+                <p style="margin-top: 8px;" *ngIf="this.average">({{this.average.toFixed(2)}})</p>
+                <p style="margin-top: 8px; margin-left: 10px;" *ngIf="this.average">| {{this.reviews.length}} review/s</p>
+            </div>
+            
+            
             <p style="font-size: 1.25em;">{{product.price | currency}}</p>
             <br>
             <div class="d-flex justify-content-start align-items-center">
                 <i (click)="decrementQuantity()" class="fa fa-minus-circle text-success mr-2" style="cursor: pointer; font-size: 2em;"></i>
                 <span class="font-weight-bold" style="font-size: 1.5em;">{{quantity}}</span>
                 <i (click)="incrementQuantity()" class="fa fa-plus-circle text-success mx-2" style="cursor: pointer; font-size: 2em;"></i>
-                <button (click)="addItemToBasket()" class="btn btn-outline-primary btn-lg ml-4">Add to Cart</button>
+                <button (click)="addItemToBasket()" class="btn btn-outline-primary ml-5">Add to Cart</button>
             </div>
             <div class="row mt-5">
                 <div class="col-12">
@@ -21,6 +27,21 @@
                     <p>{{product.description}}</p>
                 </div>
             </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col col-xs cta-usp">
+            <span class="usp-icon"><img class="img-icon" src="//cdn.shopify.com/s/files/1/0255/9760/8011/t/38/assets/trolley.svg?v=17110604478566665202" alt="FREE DELIVERY" style="margin-left: 35px;"></span>
+            <div class="usp-text"><i>FREE DELIVERY</i></div>
+        </div>
+        <div class="col col-xs cta-usp">
+            <span class="usp-icon"><img class="img-icon" src="//cdn.shopify.com/s/files/1/0255/9760/8011/t/38/assets/parachute.svg?v=13167892034846402048" alt="SAFE AND FAST DELIVERY" style="margin-left: 80px;"></span>
+            <div class="usp-text"><i>SAFE AND FAST DELIVERY</i></div>
+        </div>
+        <div class="col col-xs cta-usp">
+            <span class="usp-icon"><img class="img-icon" src="//cdn.shopify.com/s/files/1/0255/9760/8011/t/38/assets/cabinet.svg?v=17060745077649662942" alt="BIGGEST ASSORTMENT" style="margin-left: 65px;"></span>
+            <div class="usp-text"><i>BIGGEST ASSORTMENT</i></div>
         </div>
     </div>
 </div>
