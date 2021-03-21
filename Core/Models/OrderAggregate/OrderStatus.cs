@@ -11,6 +11,12 @@ namespace Core.Models.OrderAggregate
         PaymentReceived,
 
         [EnumMember(Value = "Payment Failed")]
-        PaymentFailed
+        PaymentFailed,
+
+        [EnumMember(Value = "Confirmed")]
+        Confirmed,
+
+        [EnumMember(Value = "Shipped")]
+        Shipped,
     }
 }

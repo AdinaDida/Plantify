@@ -85,5 +85,12 @@ namespace Infrastructure.Services
 
             return await _unitOfWork.Repository<Order>().ListAsync(spec);
         }
+
+        public async Task<Order> GetOrderByIdAdminAsync(int id)
+        {
+            return await _unitOfWork.Repository<Order>().GetByIdAsync(id);
+        }
+
+        
     }
 }
