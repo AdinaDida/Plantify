@@ -52,7 +52,7 @@
             <h5 style="text-align:center">Leave a review:</h5>
             <br>
             <br>
-            <div
+            <div 
                 [formGroup]="reviewForm"
                 class="form-group">
                     <div style="display: flex;">
@@ -61,16 +61,18 @@
                     </div>
                     <br>
                     <input id="ratings-hidden" name="rating" type="hidden"> 
-                    <input #stars class="form-control " type="text" placeholder="Your name" formControlName="username" style="width: 445px;">
+                    <input #stars class="form-control " type="text" placeholder="Your name" formControlName="username" style="width: 445px;" required>
                     <br>
-                    <input class="form-control" type="text" placeholder="Title" formControlName="title" style="width: 445px;" >
+                    <input class="form-control" type="text" placeholder="Title" formControlName="title" style="width: 445px;" required>
+                    <!-- <app-text-input formControlName="username" [label]="'Username'"></app-text-input>
+                    <app-text-input formControlName="title" [label]="'Title'"></app-text-input> -->
                     <br>
                     <textarea class="form-control animated" cols="50" id="new-review" name="comment"  formControlName="description" placeholder="Enter your review here..." rows="5" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; width: auto;"></textarea>
                     <div class="text-right">
                         <br>
                         <div class="stars starrr" data-rating="0"><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span></div>
                         <button class="btn btn-danger btn-sm"  (click)="onCancel()" type="submit">Cancel</button>
-                        <button class="btn btn-success btn-sm" style="margin-left:10px" type="submit" (click)="createReview()">Save</button>
+                        <button [disabled]="reviewForm.invalid" class="btn btn-success btn-sm" style="margin-left:10px" type="submit" (click)="createReview()">Save</button>
                     </div>
             </div>
         </div>
