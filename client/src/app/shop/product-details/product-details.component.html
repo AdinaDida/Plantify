@@ -10,6 +10,7 @@
                 <star-rating (click)="setFocus()" (rate)="onRate($event)" [totalstars]='5' value='{{this.average}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='false' ></star-rating>
                 <p style="margin-top: 8px;" *ngIf="this.average">({{this.average.toFixed(2)}})</p>
                 <p style="margin-top: 8px; margin-left: 10px;" *ngIf="this.average">| {{this.reviews.length}} review/s</p>
+                <p style="margin-top: 8px; margin-left: 10px;" *ngIf="!this.average">No reviews</p>
             </div>
             
             
@@ -46,7 +47,7 @@
     </div>
 </div>
 <hr>
-<div class="container mt-5 align-items-center" style="margin-top:10px">
+<div class="container mt-5" style="margin-top:10px">
     <div class="row" id="post-review-box" >
         <div class="col-md-5 offset-3">
             <h5 style="text-align:center">Leave a review:</h5>
@@ -80,19 +81,19 @@
 </div>
 <hr>
 
-<div *ngIf="reviews" class="container mt-5 align-items-center" style="margin-top:10px">
-    <div class="container mt-5 align-items-center" style="margin-top:10px">
-        <div class="col-md-7 offset-3">
-            <div class="review-block" *ngIf="reviews != undefined" style="display:inline-block;">
-                <h5>Reviews:</h5>
-                <div class="row" *ngFor="let review of reviews">
-                    <div class="card mb-3" style="width:650px; margin-left:15px; border:none; background-color:#d5dadf7e">
-                        <div class="card-body">
-                            <star-rating [totalstars]='5' value='{{review.rating}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='true' ></star-rating>
-                            <h5 class="card-title">{{review.title}}</h5>
-                            <p class="card-text"><i>"{{review.description}}"</i></p>
-                            <footer class="blockquote-footer">{{review.username}}</footer>
-                        </div>
+<div *ngIf="this.average" class="container mt-5 align-items-center" style="margin-top:10px">
+    <div class="col-md-7 offset-2">
+        <div class="review-block" *ngIf="reviews != undefined" style="display:inline-block;">
+            <h5 style="text-align:center">Reviews:</h5>
+            <br>
+            <br>
+            <div class="row" *ngFor="let review of reviews">
+                <div class="card mb-3" style="width:650px; margin-left:15px; border:none; background-color:#d5dadf7e">
+                    <div class="card-body">
+                        <star-rating [totalstars]='5' value='{{review.rating}}' checkedcolor="gold" uncheckedcolor="gray" size="24px" [readonly]='true' ></star-rating>
+                        <h5 class="card-title">{{review.title}}</h5>
+                        <p class="card-text"><i>"{{review.description}}"</i></p>
+                        <footer class="blockquote-footer">{{review.username}}</footer>
                     </div>
                 </div>
             </div>
