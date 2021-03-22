@@ -21,10 +21,13 @@ namespace API.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
+        private readonly IMailService _mailService;
+
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-            ITokenService tokenService, IMapper mapper)
+            ITokenService tokenService, IMapper mapper, IMailService mailService)
         {
             _mapper = mapper;
+            _mailService = mailService;
             _tokenService = tokenService;
             _signInManager = signInManager;
             _userManager = userManager;
@@ -81,6 +84,11 @@ namespace API.Controllers
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded) return BadRequest(new ApiResponse(400));
+
+            if (result.Succeeded)
+            {
+                await _mailService.SendEmail(registerDto.Email, "yeeye", "<h1>A mers</h1><p>Register at " + DateTime.Now + "</p>");
+            }
 
             return new UserDto
             {

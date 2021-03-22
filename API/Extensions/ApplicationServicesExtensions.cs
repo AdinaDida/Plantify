@@ -20,6 +20,7 @@ namespace API.Extensions
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IMessagingService, MessagingService>();
+            services.AddTransient<IMailService, SendMailService>();
 
             services.AddScoped<IAdminOrderRepository, AdminOrderRepository>();
 
