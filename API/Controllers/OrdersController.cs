@@ -300,7 +300,7 @@ namespace API.Controllers
                                                     "<tbody> " +
                                                         "<tr> " +
                                                             "<td align='center' bgcolor='#ffecea' class='inner-td' style='border-radius:6px; font-size:16px; text-align:center; background-color:inherit;'> " +
-                                                                "<a href='http://localhost:4200/' style='background-color:#ffecea; border:1px solid #ffecea; border-color:#ffecea; border-radius:0px; border-width:1px; color:#4BBf73; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
+                                                                "<a href='http://localhost:4200/' style='background-color:black; border:1px solid black; border-color:#ffecea; border-radius:0px; border-width:1px; color:white; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
                                                             "</td> " +
                                                         "</tr> " +
                                                     "</tbody> " +
@@ -323,7 +323,7 @@ namespace API.Controllers
                                                 "<div>" +
                                                     "<div style='font-family: inherit; text-align: center'>" +
                                                         "<span style='color: #ffffff; font-size: 12px'>" +
-                                                            "<strong>Thank you for shopping at Beauvais + Lille. If you need to return any items, they need to be returned in its original packaging with proof of purchase. If you do not have a proof of purchase, we can offer you store credit.</strong>" +
+                                                            "<strong>Thank you for shopping at Plantify Store. If you need to return any items, they need to be returned in its original packaging with proof of purchase. If you do not have a proof of purchase, we can offer you store credit.</strong>" +
                                                         "</span>" +
                                                     "</div> " +
                                                     "<div style='font-family: inherit; text-align: center'><br></div> " +

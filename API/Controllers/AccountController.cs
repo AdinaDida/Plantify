@@ -98,7 +98,8 @@ namespace API.Controllers
                                                 "<td style='padding:50px 30px 18px 30px; line-height:36px; text-align:inherit; background-color:#ffffff;' height='100%' valign='top' bgcolor='#ffffff' role='module-content'>" +
                                                     "<div>" +
                                                         "<div style='font-family: inherit; text-align: center'>" +
-                                                            "<span style='font-size: 43px'>Thanks for signing up, Jane! </span>" +
+                                                         "<img class='max-width' border='0' style='display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;' width='600' alt='' data-proportionally-constrained='true' data-responsive='false' src='https://www.wework.com/ideas/wp-content/uploads/sites/4/2019/08/Stocksy_txpbf16198csmR200_Medium_1873199_v1-1440x810-1-1120x630.jpg' height='189'>" +
+                                                            $"<span style='font-size: 43px'>Thanks for signing up, {user.DisplayName}! </span>" +
                                                         "</div>" +
                                                         "<div></div>" +
                                                     "</div>" +
@@ -113,11 +114,12 @@ namespace API.Controllers
                                                     "<div>" +
                                                         "<div style='font-family: inherit; text-align: center'>" +
                                                             "<span style='font-size: 18px'>Please verify your email address to</span>" +
-                                                            "<span style='color: #000000; font-size: 18px; font-family: arial,helvetica,sans-serif'> get access to thousands of exclusive job listings</span>" +
+                                                            "<span style='color: #000000; font-size: 18px; font-family: arial,helvetica,sans-serif'> get access to thousands of beautiful plants at</span>" +
                                                             "<span style='font-size: 18px'>.</span>" +
+                                                           " <div class='align-text-center' style='font-size:20px;margin-top:30px'>Plantify Store</div>" +
                                                         "</div> " +
                                                         "<div style='font-family: inherit; text-align: center'>" +
-                                                            "<span style='color: #ffbe00; font-size: 18px'>" +
+                                                            "<span style='color: black; font-size: 18px'>" +
                                                                 "<strong>Thank you! </strong>" +
                                                             "</span>" +
                                                         "</div>" +
@@ -135,7 +137,7 @@ namespace API.Controllers
                                                         "<tbody> " +
                                                             "<tr> " +
                                                                 "<td align='center' bgcolor='#ffbe00' class='inner-td' style='border-radius:6px; font-size:16px; text-align:center; background-color:inherit;'> " +
-                                                                    "<a href='' style='background-color:#ffbe00; border:1px solid #ffbe00; border-color:#ffbe00; border-radius:0px; border-width:1px; color:#000000; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Verify Email Now</a> " +
+                                                                    "<a href='' style='background-color:black; border:1px solid black; border-color:#ffbe00; border-radius:0px; border-width:1px; color:white; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Verify Email Now</a> " +
                                                                 "</td> " +
                                                             "</tr> " +
                                                         "</tbody> " +
