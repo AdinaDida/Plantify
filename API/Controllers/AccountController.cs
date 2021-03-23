@@ -87,7 +87,11 @@ namespace API.Controllers
 
             if (result.Succeeded)
             {
-                await _mailService.SendEmail(registerDto.Email, "Register Confirmed", "<h1>Confirm</h1><p>Register at " + DateTime.Now + "</p>");
+                await _mailService.SendEmail(registerDto.Email, "Register Confirmed",
+                    "<div style='background-color: white'>" +
+                    "<h1>Confirm</h1><p>Register at " + DateTime.Now + "</p>" +
+                    "</div>"
+                    );
             }
 
             return new UserDto
