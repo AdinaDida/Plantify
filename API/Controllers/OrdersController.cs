@@ -42,7 +42,7 @@ namespace API.Controllers
             var products = GetOrderProductsAsHtml(order);
             if (order == null) return BadRequest(new ApiResponse(400, "Problem creating order"));
             _messagingService.SendMessage($"Thank you for your order #{order.Id} the order status is {order.Status}");
-            await _mailService.SendEmail(email, "Order Received",
+            await _mailService.SendEmailAsync(email, "Order Received",
                 "<table width = '100%' cellpadding = '0' cellspacing = '0' border = '0' style = 'width:100%; max-width:600px;' align = 'center'>" +
                     "<tbody>" +
                         "<tr>"+
@@ -51,8 +51,10 @@ namespace API.Controllers
                                     "<tbody>"+
                                         "<tr>" +
                                             "<td style='font-size:6px; line-height:10px; padding:0px 0px 0px 0px;' valign='top' align='center'>" +
-                                                "<img class='max-width' border='0' style='display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;' width='600' alt='' data-proportionally-constrained='true' data-responsive='false' src='http://cdn.mcauto-images-production.sendgrid.net/954c252fedab403f/4ad091f2-00dc-4c89-9ad8-1d7aeaf169c2/600x189.png' height='189'>" +
-                                            "</td>"+
+                                                "<img class='max-width' border='0' style='display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;' width='600' alt='' data-proportionally-constrained='true' data-responsive='false' src='https://www.wework.com/ideas/wp-content/uploads/sites/4/2019/08/Stocksy_txpbf16198csmR200_Medium_1873199_v1-1440x810-1-1120x630.jpg' height='189'>" +
+                                                " <div class='align-text-center' style='font-size:50px;margin-top:30px'>Plantify Store</div>" +
+
+                                                "</td>" +
                                         "</tr>" +
                                     "</tbody>" +
                                 "</table>" +
@@ -75,7 +77,7 @@ namespace API.Controllers
                                                         "</span>" +
                                                     "</div>" +
                                                     "<div style='font-family: inherit; text-align: center'>" +
-                                                        "<span style='color: #80817f; font-size: 12px'>January 20, 2020 5:40 PM " +
+                                                        $"<span style='color: #80817f; font-size: 12px'>{order.OrderDate}" +
                                                         "</span>" +
                                                     "</div>" +
                                                     "<div></div>" +
@@ -91,30 +93,30 @@ namespace API.Controllers
                                                 "<div>" +
                                                     "<div style='font-family: inherit; text-align: inherit'>" +
                                                         "<span style='color: #80817f; font-size: 12px'>" +
-                                                            "<strong>Employee:</strong>" +
+                                                            $"<strong>{order.ShipToAddress.FirstName}  {order.ShipToAddress.LastName}</strong>" +
                                                         "</span>" +
-                                                        "<span style='color: #80817f; font-size: 12px'> Sammie" +
+                                                        "<span style='color: #80817f; font-size: 12px'>" +
                                                         "</span>" +
                                                     "</div>" +
                                                     "<div style='font-family: inherit; text-align: inherit'>" +
                                                         "<span style='color: #80817f; font-size: 12px'>" +
-                                                            "<strong>Customer:</strong>" +
+                                                            $"<strong>{order.ShipToAddress.Street}{order.ShipToAddress.City} </strong>" +
                                                         "</span>" +
-                                                        "<span style='color: #80817f; font-size: 12px'> Jane Doe" +
+                                                        "<span style='color: #80817f; font-size: 12px'>" +
                                                         "</span>" +
                                                     "</div>" +
                                                     "<div style='font-family: inherit; text-align: inherit'>" +
                                                         "<span style='color: #80817f; font-size: 12px'>" +
-                                                            "<strong>Email:</strong>" +
+                                                            $"<strong>{order.ShipToAddress.State}</strong>" +
                                                         "</span>" +
-                                                        "<span style='color: #80817f; font-size: 12px'> janedoe@example.com" +
+                                                        "<span style='color: #80817f; font-size: 12px'>" +
                                                         "</span>" +
                                                     "</div> " +
                                                     "<div style='font-family: inherit; text-align: inherit'>" +
                                                         "<span style='color: #80817f; font-size: 12px'>" +
-                                                            "<strong>Ticket Number: </strong>" +
+                                                            $"<strong>Order Number: </strong>" +
                                                         "</span>" +
-                                                        "<span style='color: #80817f; font-size: 12px'>123456789 " +
+                                                        $"<span style='color: #80817f; font-size: 12px'>  {order.Id}" +
                                                         "</span>" +
                                                     "</div>" +
                                                     "<div></div>" +
@@ -235,80 +237,7 @@ namespace API.Controllers
                                         "</tr>" +
                                     "</tbody> " +
                                 "</table>" +
-                                "<table border='0' cellpadding='0' cellspacing='0' align='center' width='100%' role='module' data-type='columns' style='padding:0px 40px 0px 40px;' bgcolor='#FFFFFF'> " +
-                                    "<tbody> " +
-                                        "<tr role='module-content'> " +
-                                            "<td height='100%' valign='top'> " +
-                                                "<table class='column' width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor=''> " +
-                                                    "<tbody>" +
-                                                        "<tr>" +
-                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
-                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.2' data-mc-module-version='2019-10-22'>" +
-                                                                    "<tbody> " +
-                                                                        "<tr>" +
-                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
-                                                                                "<div>" +
-                                                                                    "<div style='font-family: inherit; text-align: center'>" +
-                                                                                        "<span style='color: #80817f; font-size: 12px'>Villa Floral (120 mL)</span>" +
-                                                                                    "</div>" +
-                                                                                    "<div></div>" +
-                                                                                "</div>" +
-                                                                            "</td>" +
-                                                                        "</tr>" +
-                                                                    "</tbody>" +
-                                                                "</table>" +
-                                                            "</td> " +
-                                                        "</tr> " +
-                                                    "</tbody> " +
-                                                "</table> " +
-                                                "<table class='column' width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor=''> " +
-                                                    "<tbody> " +
-                                                        "<tr> " +
-                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
-                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.1.2' data-mc-module-version='2019-10-22'>" +
-                                                                    "<tbody> " +
-                                                                        "<tr> " +
-                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
-                                                                                "<div>" +
-                                                                                    "<div style='font-family: inherit; text-align: center'>" +
-                                                                                        "<span style='color: #80817f; font-size: 12px'>1</span>" +
-                                                                                    "</div>" +
-                                                                                    "<div></div>" +
-                                                                                "</div>" +
-                                                                            "</td> " +
-                                                                        "</tr> " +
-                                                                    "</tbody> " +
-                                                                "</table>" +
-                                                            "</td> " +
-                                                        "</tr> " +
-                                                    "</tbody> " +
-                                                "</table> " +
-                                                "<table width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor='' class='column column-2'> " +
-                                                    "<tbody> " +
-                                                        "<tr> " +
-                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
-                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.1.1.1' data-mc-module-version='2019-10-22'> " +
-                                                                    "<tbody>" +
-                                                                        "<tr> " +
-                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
-                                                                                "<div>" +
-                                                                                    "<div style='font-family: inherit; text-align: center'>" +
-                                                                                        "<span style='color: #80817f; font-size: 12px'>$175.90</span>" +
-                                                                                    "</div>" +
-                                                                                    "<div></div>" +
-                                                                                "</div>" +
-                                                                            "</td>" +
-                                                                        "</tr> " +
-                                                                    "</tbody> " +
-                                                                "</table>" +
-                                                            "</td> " +
-                                                        "</tr> " +
-                                                    "</tbody> " +
-                                                "</table>" +
-                                            "</td> " +
-                                        "</tr> " +
-                                    "</tbody> " +
-                                "</table>" +
+                                 products +
                                 "<table class='module' role='module' data-type='divider' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='c614d8b1-248a-48ea-a30a-8dd0b2c65e10.1.2'> " +
                                     "<tbody> " +
                                         "<tr> " +
@@ -324,80 +253,7 @@ namespace API.Controllers
                                         "</tr> " +
                                     "</tbody> " +
                                 "</table>" +
-                                "<table border='0' cellpadding='0' cellspacing='0' align='center' width='100%' role='module' data-type='columns' style='padding:0px 40px 0px 40px;' bgcolor='#FFFFFF'> " +
-                                    "<tbody> " +
-                                        "<tr role='module-content'> " +
-                                            "<td height='100%' valign='top'> " +
-                                                "<table class='column' width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor=''> " +
-                                                    "<tbody> " +
-                                                        "<tr> " +
-                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
-                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.2.1' data-mc-module-version='2019-10-22'> " +
-                                                                    "<tbody> " +
-                                                                        "<tr> " +
-                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
-                                                                                "<div>" +
-                                                                                    "<div style='font-family: inherit; text-align: center'>" +
-                                                                                        "<span style='color: #80817f; font-size: 12px'>Port Toulon (40 mL)</span>" +
-                                                                                    "</div>" +
-                                                                                    "<div></div>" +
-                                                                                "</div>" +
-                                                                            "</td> " +
-                                                                        "</tr> " +
-                                                                    "</tbody> " +
-                                                                "</table>" +
-                                                            "</td> " +
-                                                        "</tr> " +
-                                                    "</tbody> " +
-                                                "</table> " +
-                                                "<table class='column' width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor=''> " +
-                                                    "<tbody> " +
-                                                        "<tr> " +
-                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
-                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.1.2.1' data-mc-module-version='2019-10-22'> " +
-                                                                    "<tbody> " +
-                                                                        "<tr> " +
-                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
-                                                                                "<div>" +
-                                                                                    "<div style='font-family: inherit; text-align: center'>" +
-                                                                                        "<span style='color: #80817f; font-size: 12px'>1</span>" +
-                                                                                    "</div>" +
-                                                                                    "<div></div>" +
-                                                                                "</div>" +
-                                                                            "</td> " +
-                                                                        "</tr> " +
-                                                                    "</tbody> " +
-                                                                "</table>" +
-                                                            "</td> " +
-                                                        "</tr> " +
-                                                    "</tbody> " +
-                                                "</table> " +
-                                                "<table width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor='' class='column column-2'>" +
-                                                    "<tbody> " +
-                                                        "<tr> " +
-                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
-                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.1.1.1.1' data-mc-module-version='2019-10-22'> " +
-                                                                    "<tbody>" +
-                                                                        "<tr>" +
-                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
-                                                                                "<div>" +
-                                                                                    "<div style='font-family: inherit; text-align: center'>" +
-                                                                                        "<span style='color: #80817f; font-size: 12px'>$35.90</span>" +
-                                                                                    "</div>" +
-                                                                                    "<div></div>" +
-                                                                                "</div>" +
-                                                                            "</td>" +
-                                                                        "</tr>" +
-                                                                    "</tbody>" +
-                                                                "</table>" +
-                                                            "</td>" +
-                                                        "</tr> " +
-                                                    "</tbody>" +
-                                                "</table>" +
-                                            "</td> " +
-                                        "</tr> " +
-                                    "</tbody> " +
-                                "</table>" +
+                                
                                 "<table class='module' role='module' data-type='divider' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='c614d8b1-248a-48ea-a30a-8dd0b2c65e10.1.2.1'> " +
                                     "<tbody> " +
                                         "<tr> " +
@@ -444,7 +300,7 @@ namespace API.Controllers
                                                     "<tbody> " +
                                                         "<tr> " +
                                                             "<td align='center' bgcolor='#ffecea' class='inner-td' style='border-radius:6px; font-size:16px; text-align:center; background-color:inherit;'> " +
-                                                                "<a href='' style='background-color:#ffecea; border:1px solid #ffecea; border-color:#ffecea; border-radius:0px; border-width:1px; color:#80817f; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
+                                                                "<a href='http://localhost:4200/' style='background-color:#ffecea; border:1px solid #ffecea; border-color:#ffecea; border-radius:0px; border-width:1px; color:#4BBf73; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
                                                             "</td> " +
                                                         "</tr> " +
                                                     "</tbody> " +
@@ -567,7 +423,7 @@ namespace API.Controllers
             var email = User.RetrieveEmailFromPrincipal();
             OrderStatus orderStatus = (OrderStatus)status;
             _messagingService.SendMessage($"The status for your order #{id} is now {orderStatus}.");
-            await _mailService.SendEmail(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
+            await _mailService.SendEmailAsync(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
             return await _rep.ChangeOrderStatus(id, orderStatus);
         }
 
@@ -584,12 +440,80 @@ namespace API.Controllers
             foreach (var prod in products)
             {
                 message +=
-                    $"<div class=" + "p-2 d-flex" + ">" +
-                    "<div class='ml-3 d-inline-block align-middle'>" +
-                    $"<h5 class='mb-0'><a class='text-dark'>{ prod.ItemOrdered.ProductName}</h5>" +
-                    $"<strong>{prod.Price}.00 $</strong></td>" +
-                    $"<div class='d-flex justify-content-start align-items-center'>" +
-                    $"<span class='font-weight-bold' style='font-size: 1.5em;'> {prod.Quantity}</span></div><strong>{prod.Price * prod.Quantity}.00 $</strong>";
+                           "<table border='0' cellpadding='0' cellspacing='0' align='center' width='100%' role='module' data-type='columns' style='padding:0px 40px 0px 40px;' bgcolor='#FFFFFF'> " +
+                                    "<tbody> " +
+                                        "<tr role='module-content'> " +
+                                            "<td height='100%' valign='top'> " +
+                                                "<table class='column' width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor=''> " +
+                                                    "<tbody>" +
+                                                        "<tr>" +
+                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
+                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.2' data-mc-module-version='2019-10-22'>" +
+                                                                    "<tbody> " +
+                                                                        "<tr>" +
+                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
+                                                                                "<div>" +
+                                                                                    "<div style='font-family: inherit; text-align: center'>" +
+                                                                                        $"<span style='color: #80817f; font-size: 12px'>{prod.ItemOrdered.ProductName}</span>" +
+                                                                                    "</div>" +
+                                                                                    "<div></div>" +
+                                                                                "</div>" +
+                                                                            "</td>" +
+                                                                        "</tr>" +
+                                                                    "</tbody>" +
+                                                                "</table>" +
+                                                            "</td> " +
+                                                        "</tr> " +
+                                                    "</tbody> " +
+                                                "</table> " +
+                                                "<table class='column' width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor=''> " +
+                                                    "<tbody> " +
+                                                        "<tr> " +
+                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
+                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.1.2' data-mc-module-version='2019-10-22'>" +
+                                                                    "<tbody> " +
+                                                                        "<tr> " +
+                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
+                                                                                "<div>" +
+                                                                                    "<div style='font-family: inherit; text-align: center'>" +
+                                                                                        $"<span style='color: #80817f; font-size: 12px'>{prod.Quantity}</span>" +
+                                                                                    "</div>" +
+                                                                                    "<div></div>" +
+                                                                                "</div>" +
+                                                                            "</td> " +
+                                                                        "</tr> " +
+                                                                    "</tbody> " +
+                                                                "</table>" +
+                                                            "</td> " +
+                                                        "</tr> " +
+                                                    "</tbody> " +
+                                                "</table> " +
+                                                "<table width='173' style='width:173px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor='' class='column column-2'> " +
+                                                    "<tbody> " +
+                                                        "<tr> " +
+                                                            "<td style='padding:0px;margin:0px;border-spacing:0;'>" +
+                                                                "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='64573b96-209a-4822-93ec-5c5c732af15c.1.1.1' data-mc-module-version='2019-10-22'> " +
+                                                                    "<tbody>" +
+                                                                        "<tr> " +
+                                                                            "<td style='padding:15px 0px 15px 0px; line-height:22px; text-align:inherit;' height='100%' valign='top' bgcolor='' role='module-content'>" +
+                                                                                "<div>" +
+                                                                                    "<div style='font-family: inherit; text-align: center'>" +
+                                                                                        $"<span style='color: #80817f; font-size: 12px'>${prod.Price}</span>" +
+                                                                                    "</div>" +
+                                                                                    "<div></div>" +
+                                                                                "</div>" +
+                                                                            "</td>" +
+                                                                        "</tr> " +
+                                                                    "</tbody> " +
+                                                                "</table>" +
+                                                            "</td> " +
+                                                        "</tr> " +
+                                                    "</tbody> " +
+                                                "</table>" +
+                                            "</td> " +
+                                        "</tr> " +
+                                    "</tbody> " +
+                                "</table>";
             }
             return message;
         }
