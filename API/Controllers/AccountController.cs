@@ -87,8 +87,8 @@ namespace API.Controllers
 
             if (result.Succeeded)
             {
-                await _mailService.SendEmail(registerDto.Email, "Register Confirmed",
-                    "<table class='column' width='540' style='width:540px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;' cellpadding='0' cellspacing='0' align='left' border='0' bgcolor=''> " +
+                await _mailService.SendEmailAsync(registerDto.Email, "Register Confirmed",
+                    "<table class='column' width='540' style='width:540px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;' cellpadding='0' cellspacing='0' align='center' border='0' bgcolor=''> " +
                         "<tbody> " +
                             "<tr> " +
                                 "<td style='padding:0px;margin:0px;border-spacing:0;'>" +

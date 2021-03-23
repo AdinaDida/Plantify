@@ -253,7 +253,7 @@ namespace API.Controllers
                                         "</tr> " +
                                     "</tbody> " +
                                 "</table>" +
-                                
+
                                 "<table class='module' role='module' data-type='divider' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='c614d8b1-248a-48ea-a30a-8dd0b2c65e10.1.2.1'> " +
                                     "<tbody> " +
                                         "<tr> " +
