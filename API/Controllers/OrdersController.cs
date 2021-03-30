@@ -43,7 +43,7 @@ namespace API.Controllers
             if (order == null) return BadRequest(new ApiResponse(400, "Problem creating order"));
             _messagingService.SendMessage($"Thank you for your order #{order.Id} the order status is {order.Status}");
             await _mailService.SendEmailAsync(email, "Order Received",
-                "<table width = '100%' cellpadding = '0' cellspacing = '0' border = '0' style = 'width:100%; max-width:600px;' align = 'center'>" +
+                "<table width = '800px' cellpadding = '0' cellspacing = '0' border = '0' style = 'padding: 15px 15px 15px 15px;background-color: black;' align = 'center'>" +
                     "<tbody>" +
                         "<tr>"+
                             "<td role='modules-container' style='padding:0px 0px 0px 0px; color:#000000; text-align:left;' bgcolor='#FFFFFF' width='100%' align='left'>"+
@@ -51,7 +51,7 @@ namespace API.Controllers
                                     "<tbody>"+
                                         "<tr>" +
                                             "<td style='font-size:6px; line-height:10px; padding:0px 0px 0px 0px;' valign='top' align='center'>" +
-                                                "<img class='max-width' border='0' style='display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;' width='600' alt='' data-proportionally-constrained='true' data-responsive='false' src='https://www.wework.com/ideas/wp-content/uploads/sites/4/2019/08/Stocksy_txpbf16198csmR200_Medium_1873199_v1-1440x810-1-1120x630.jpg' height='189'>" +
+                                                "<img class='max-width' border='0' style='display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px;' width='100%' alt='' data-proportionally-constrained='true' data-responsive='false' src='https://www.wework.com/ideas/wp-content/uploads/sites/4/2019/08/Stocksy_txpbf16198csmR200_Medium_1873199_v1-1440x810-1-1120x630.jpg' height='189'>" +
                                                 " <div class='align-text-center' style='font-size:50px;margin-top:30px'>Plantify Store</div>" +
 
                                                 "</td>" +
@@ -300,7 +300,7 @@ namespace API.Controllers
                                                     "<tbody> " +
                                                         "<tr> " +
                                                             "<td align='center' bgcolor='#ffecea' class='inner-td' style='border-radius:6px; font-size:16px; text-align:center; background-color:inherit;'> " +
-                                                                "<a href='http://localhost:4200/' style='background-color:#ffecea; border:1px solid #ffecea; border-color:#ffecea; border-radius:0px; border-width:1px; color:#4BBf73; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
+                                                                "<a href='http://localhost:4200/' style='background-color:black; border:1px solid black; border-color:#ffecea; border-radius:0px; border-width:1px; color:white; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
                                                             "</td> " +
                                                         "</tr> " +
                                                     "</tbody> " +
@@ -319,11 +319,11 @@ namespace API.Controllers
                                 "<table class='module' role='module' data-type='text' border='0' cellpadding='0' cellspacing='0' width='100%' style='table-layout: fixed;' data-muid='20d6cd7f-4fad-4e9c-8fba-f36dba3278fc' data-mc-module-version='2019-10-22'> " +
                                     "<tbody> " +
                                         "<tr> " +
-                                            "<td style='padding:40px 30px 40px 30px; line-height:22px; text-align:inherit; background-color:#80817f;' height='100%' valign='top' bgcolor='#80817f' role='module-content'>" +
+                                            "<td style='padding:40px 30px 40px 30px; line-height:22px; text-align:inherit; background-color:#243624;' height='100%' valign='top' bgcolor='#80817f' role='module-content'>" +
                                                 "<div>" +
                                                     "<div style='font-family: inherit; text-align: center'>" +
                                                         "<span style='color: #ffffff; font-size: 12px'>" +
-                                                            "<strong>Thank you for shopping at Beauvais + Lille. If you need to return any items, they need to be returned in its original packaging with proof of purchase. If you do not have a proof of purchase, we can offer you store credit.</strong>" +
+                                                            "<strong>Thank you for shopping at Plantify Store. If you need to return any items, they need to be returned in its original packaging with proof of purchase. If you do not have a proof of purchase, we can offer you store credit.</strong>" +
                                                         "</span>" +
                                                     "</div> " +
                                                     "<div style='font-family: inherit; text-align: center'><br></div> " +
