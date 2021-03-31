@@ -1,5 +1,7 @@
 ﻿using Core.Interfaces;
+using Core.Models;
 using Core.Models.OrderAggregate;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +19,42 @@ namespace Infrastructure.Data
         {
             this._context = context;
         }
+
+        public async Task<Product> AddProduct(Product product)
+        {
+            var products = await _context.Products.ToListAsync();
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            return product;
+        }
+
         public async Task<Order> ChangeOrderStatus(int id, OrderStatus status)
         {
-            var order = _context.Orders.Where(o => o.Id == id).FirstOrDefault();
+            var order = await _context.Orders.FindAsync(id);
             order.Status = status;
             await _context.SaveChangesAsync();
             return order;
+        }
+
+        public async Task<Product> DeleteProductById(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return product;
+        }
+
+        public async Task<List<Order>> GetOrders()
+        {
+            var orders = await _context.Orders.ToListAsync();
+            return orders;
+        }
+
+        public async Task<Product> GetProductById(int id)
+        {
+            var products = await _context.Products.Include(p => p.ProductBrand).Include(p => p.ProductType).Include(p=>p.ProductReviews).ToListAsync();
+            var product = products.Where(p => p.Id == id).FirstOrDefault();
+            return product;
         }
     }
 }

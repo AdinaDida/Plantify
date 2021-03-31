@@ -114,17 +114,17 @@ export class ShopService {
 
 
   getReviews(){
-    return this.http.get<IProductReview[]>(this.baseUrl + 'reviews');
+    return this.http.get<IProductReview[]>(this.baseUrl + 'useractions/reviews');
   }
 
 
   getProductReviews(id: number){
-    return this.http.get<IProductReview[]>(this.baseUrl + 'reviews/' + id);
+    return this.http.get<IProductReview[]>(this.baseUrl + 'useractions/reviews/' + id);
   }
 
 
   createReview(review: IProductReview){
-    return this.http.post<IProductReview>(this.baseUrl + 'reviews/add', review);
+    return this.http.post<IProductReview>(this.baseUrl + 'useractions/reviews/add', review);
   }
 
 }
