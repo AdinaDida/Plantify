@@ -22,12 +22,14 @@ namespace API.Controllers
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
         private readonly IMailService _mailService;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-            ITokenService tokenService, IMapper mapper, IMailService mailService)
+            ITokenService tokenService, IMapper mapper, IMailService mailService, RoleManager<IdentityRole> roleManager)
         {
             _mapper = mapper;
             _mailService = mailService;
+            _roleManager = roleManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
             _userManager = userManager;
@@ -38,12 +40,15 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailFromClaimsPrinciple(User);
+            var role = _roleManager.Roles.Where(r => r.Id == "2").FirstOrDefault();
+            user.Role = role.Name;
 
             return new UserDto
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.DisplayName
+                DisplayName = user.DisplayName,
+                Role = user.Role
             };
         }
 
@@ -51,6 +56,8 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
+            var role = _roleManager.Roles.Where(r => r.Id == "2").FirstOrDefault();
+            loginDto.Role = role.Name;
 
             if (user == null) return Unauthorized(new ApiResponse(401));
 
@@ -61,8 +68,9 @@ namespace API.Controllers
             return new UserDto
             {
                 Email = user.Email,
-                Token=_tokenService.CreateToken(user),
-                DisplayName = user.DisplayName
+                Token = _tokenService.CreateToken(user),
+                DisplayName = user.DisplayName,
+                Role = loginDto.Role
             };
         }
 
@@ -74,19 +82,27 @@ namespace API.Controllers
                 return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" } });
             }
 
+
+            var role =  _roleManager.Roles.Where(r => r.Id == "1").FirstOrDefault();
+            registerDto.Role = role.Name;
+
             var user = new AppUser
             {
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
-                UserName = registerDto.Email
+                UserName = registerDto.Email,
+                Role = registerDto.Role
             };
 
+
             var result = await _userManager.CreateAsync(user, registerDto.Password);
+
 
             if (!result.Succeeded) return BadRequest(new ApiResponse(400));
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, registerDto.Role);
                 await _mailService.SendEmailAsync(registerDto.Email, "Register Confirmed",
                     "<table class='column' width='540' style='width:540px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;' cellpadding='0' cellspacing='0' align='center' border='0' bgcolor=''> " +
                         "<tbody> " +
@@ -158,7 +174,8 @@ namespace API.Controllers
             {
                 DisplayName = user.DisplayName,
                 Token = _tokenService.CreateToken(user),
-                Email = user.Email
+                Email = user.Email,
+                Role = registerDto.Role
             };
         }
         [HttpGet("emailexists")]
