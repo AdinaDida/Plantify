@@ -1,3 +1,5 @@
+import { ElementRef } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -14,6 +16,8 @@ import { ShopService } from '../shop.service';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+  @ViewChild('stars') stars: ElementRef;
+
   product: IProduct;
   quantity = 1;
   reviews: IProductReview[];
@@ -84,10 +88,9 @@ export class ProductDetailsComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-
-
   }
 
+  
   addItemToBasket() {
     this.basketService.addItemToBasket(this.product, this.quantity);
   }
@@ -122,5 +125,10 @@ export class ProductDetailsComponent implements OnInit {
     this.rating = +$event.newValue;
     
   }
+
+  setFocus() { 
+    this.stars.nativeElement.focus();
+  }
+
 
 }

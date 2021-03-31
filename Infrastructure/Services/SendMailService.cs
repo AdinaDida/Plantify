@@ -19,7 +19,7 @@ namespace Infrastructure.Services
             _config = config;
         }
 
-        public async Task SendEmail(string toEmail, string subject, string content)
+        public async Task SendEmailAsync(string toEmail, string subject, string content)
         {
             var apiKey = _config["SendGridKey"];
             var client = new SendGridClient(apiKey);
