@@ -7,5 +7,6 @@ namespace Core.Models.Identity
     {
         public string DisplayName { get; set; }
         public Address Address { get; set; }
+        public string Role { get; set; }
     }
 }
