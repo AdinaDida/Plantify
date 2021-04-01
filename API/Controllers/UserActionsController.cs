@@ -16,21 +16,24 @@ namespace API.Controllers
         {
             _repo = repo;
         }
-        [Route("/api/reviews")]
-        [HttpGet]
+
+        //[Route("/api/get-reviews")]
+        [HttpGet("reviews")]
         public async Task<IReadOnlyList<ProductReview>> GetProductReviews()
         {
             return await _repo.GetProductReviews();
         }
-        [Route("/api/reviews/add")]
-        [HttpPost]
+
+        //[Route("/api/reviews/add")]
+        [HttpPost("reviews/add")]
         public async Task<ProductReview> CreateProductReview(ProductReview review)
         {
             await _repo.CreateProductReview(review);
             return review;
         }
-        [Route("/api/reviews/{id}")]
-        [HttpGet("id")]
+
+        //[Route("/api/reviews/{id}")]
+        [HttpGet("reviews/{id}")]
         public async Task<IReadOnlyList<ProductReview>> GetProductReviews(int id)
         {
             return await _repo.GetProductReviewsByProduct(id);

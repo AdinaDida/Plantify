@@ -1,4 +1,5 @@
-﻿using Core.Models.OrderAggregate;
+﻿using Core.Models;
+using Core.Models.OrderAggregate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,12 @@ namespace Core.Interfaces
     public interface IAdminOrderRepository
     {
         Task<Order> ChangeOrderStatus(int id, OrderStatus status);
-        
+        Task<List<Order>> GetOrders();
+        Task<Product> AddProduct(Product product);
+        Task<Product> GetProductById(int id);
+        Task<Product> DeleteProductById(int id);
+
+
+
     }
 }

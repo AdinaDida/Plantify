@@ -416,16 +416,16 @@ namespace API.Controllers
             return _mapper.Map<OrderToReturnDto>(order);
         }
 
-        [Route("/orders/{id}/{status}")]
-        [HttpPatch("{id}/{status}")]
-        public async Task<ActionResult<Order>> ConfirmOrderById(int id, int status)
-        {
-            var email = User.RetrieveEmailFromPrincipal();
-            OrderStatus orderStatus = (OrderStatus)status;
-            _messagingService.SendMessage($"The status for your order #{id} is now {orderStatus}.");
-            await _mailService.SendEmailAsync(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
-            return await _rep.ChangeOrderStatus(id, orderStatus);
-        }
+        //[Route("/orders/{id}/{status}")]
+        //[HttpPatch("{id}/{status}")]
+        //public async Task<ActionResult<Order>> ConfirmOrderById(int id, int status)
+        //{
+        //    var email = User.RetrieveEmailFromPrincipal();
+        //    OrderStatus orderStatus = (OrderStatus)status;
+        //    _messagingService.SendMessage($"The status for your order #{id} is now {orderStatus}.");
+        //    await _mailService.SendEmailAsync(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
+        //    return await _rep.ChangeOrderStatus(id, orderStatus);
+        //}
 
         [HttpGet("deliveryMethods")]
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
