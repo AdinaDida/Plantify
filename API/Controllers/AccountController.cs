@@ -40,7 +40,7 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailFromClaimsPrinciple(User);
-            var role = _roleManager.Roles.Where(r => r.Id == "2").FirstOrDefault();
+            var role = _roleManager.Roles.Where(r => r.Id == "1").FirstOrDefault();
             user.Role = role.Name;
 
             return new UserDto
