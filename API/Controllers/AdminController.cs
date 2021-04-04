@@ -35,13 +35,13 @@ namespace API.Controllers
         {
             var email = User.RetrieveEmailFromPrincipal();
             OrderStatus orderStatus = (OrderStatus)status;
-            //_messagingService.SendMessage($"The status for your order #{id} is now {orderStatus}.");
-            //await _mailService.SendEmailAsync(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
+            _messagingService.SendMessage($"The status for your order #{id} is now {orderStatus}.");
+            await _mailService.SendEmailAsync(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
             return await _rep.ChangeOrderStatus(id, orderStatus);
         }
         //[Route("/api/admin/product/{id}")]
         [HttpGet("product/{id}")]
-        public async Task<Product> GetProductById(int id) 
+        public async Task<Product> GetProductById(int id)
         {
             return await _rep.GetProductById(id);
         }
