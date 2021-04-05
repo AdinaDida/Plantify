@@ -43,7 +43,7 @@
 
 ### View order status
 
-![](ImgForREADME/order_status.png)
+![](ImgForREADME/orders_status.png)
 
 ### Get SMS notification for order
 
