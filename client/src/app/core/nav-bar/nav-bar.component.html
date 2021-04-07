@@ -6,10 +6,11 @@
     <nav class="my-2 my-md-0 me-md-3">
         <a class="p-2 " routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
         <a class="p-2 " routerLink="/shop" routerLinkActive="active"> Shop</a>
-        <a class="p-2 " routerLink="/admin" routerLinkActive="active"> Admin</a>
+        
         <!-- <a class="p-2 "routerLink="/test-error" routerLinkActive="active" href="#">Errors</a> -->
     </nav>
-    <div class="d-flex align-items-center">
+    
+    <div class="d-flex align-items-center" >
         <a routerLink='/basket' class="position-relative">
             <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
             <div *ngIf="(basket$ | async)" class="cart-no">{{(basket$ | async).items.length}}</div>
@@ -20,7 +21,7 @@
             <a routerLink="/account/register" class="btn btn-outline-secondary mr-3">Register</a>
         </ng-container>
 
-        <ng-container *ngIf="currentUser$ | async">
+        <ng-container *ngIf="(currentUser$ | async).displayName != 'Admin' && (currentUser$ | async) != null">
             <div class="dropdown ml-3 mr-5" dropdown>
                 <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
                     <b style="font-weight: 900;">Welcome <i>{{(currentUser$ | async).displayName}}   </i></b>
@@ -33,6 +34,28 @@
                         <i class="fa fa-history mr-3"></i> View Orders
                     </a>
                     <div class="dropdown-divider"></div>
+                    <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
+                        <i class="fa fa-sign-out mr-3"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="(currentUser$ | async).displayName == 'Admin'">
+            <div class="dropdown ml-3 mr-5" dropdown>
+                <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
+                    <b style="font-weight: 900;">Admin</b>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *bsDropdownMenu>
+                    <a routerLink="/admin/orders" class="dropdown-item d-flex align-items-center py-2">
+                     Manage Orders
+                    </a>
+                    <a routerLink="/admin/products" class="dropdown-item d-flex align-items-center py-2">
+                         Manage Products
+                    </a>
+                    <a routerLink="/admin/add-product" class="dropdown-item d-flex align-items-center py-2">
+                        Add Product
+                    </a>
                     <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
                         <i class="fa fa-sign-out mr-3"></i> Logout
                     </a>

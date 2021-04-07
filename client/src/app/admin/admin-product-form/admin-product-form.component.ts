@@ -53,7 +53,7 @@ export class AdminProductFormComponent implements OnInit {
     }
     this.adminService.createProduct(this.product).toPromise();
     this.productForm.reset();
-
+    
     }
 
     getProductBrands(){
