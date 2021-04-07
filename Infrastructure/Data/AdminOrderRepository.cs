@@ -2,11 +2,11 @@
 using Core.Models;
 using Core.Models.OrderAggregate;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace Infrastructure.Data
 {
@@ -15,9 +15,11 @@ namespace Infrastructure.Data
 
         private readonly StoreContext _context;
 
+
         public AdminOrderRepository(StoreContext context)
         {
-            this._context = context;
+            _context = context;
+
         }
 
         public async Task<Product> AddProduct(Product product)
@@ -46,8 +48,14 @@ namespace Infrastructure.Data
 
         public async Task<List<Order>> GetOrders()
         {
-            var orders = await _context.Orders.ToListAsync();
+            var orders = await _context.Orders.Include(o=>o.OrderItems).Include(o=>o.DeliveryMethod).ToListAsync();
             return orders;
+        }
+
+        public async Task<List<Product>> GetProducts()
+        {
+            var products = await _context.Products.Include(p => p.ProductBrand).Include(p => p.ProductType).ToListAsync();
+            return products;
         }
 
         public async Task<Product> GetProductById(int id)

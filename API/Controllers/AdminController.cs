@@ -1,4 +1,5 @@
-﻿using API.Extensions;
+﻿using API.Dtos;
+using API.Extensions;
 using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
@@ -47,15 +48,26 @@ namespace API.Controllers
         }
 
         [HttpGet("orders")]
-        public async Task<List<Order>> GetOrders()
+        public async Task<IReadOnlyList<OrderToReturnDto>> GetOrders()
         {
-            return await _rep.GetOrders();
+            var orders = await _rep.GetOrders();
+            foreach (var order in orders)
+            {
+                order.GetTotal();
+            }
+            return _mapper.Map<IReadOnlyList<OrderToReturnDto>>(orders);
         }
         //[Route("/api/admin/product")]
         [HttpPost("product")]
         public async Task<Product> AddProduct([FromBody] Product product)
         {
             return await _rep.AddProduct(product);
+        }
+
+        [HttpGet("products")]
+        public async Task<List<Product>> GetProducts()
+        {
+            return await _rep.GetProducts();
         }
         //[Route("/api/admin/delete-product/{id}")]
         [HttpDelete("delete-product/{id}")]
