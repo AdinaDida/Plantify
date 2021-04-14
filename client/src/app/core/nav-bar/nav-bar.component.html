@@ -10,6 +10,8 @@
         <!-- <a class="p-2 "routerLink="/test-error" routerLinkActive="active" href="#">Errors</a> -->
     </nav>
     
+    
+    
     <div class="d-flex align-items-center" >
         <a routerLink='/basket' class="position-relative">
             <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
@@ -21,8 +23,8 @@
             <a routerLink="/account/register" class="btn btn-outline-secondary mr-3">Register</a>
         </ng-container>
 
-        <ng-container *ngIf="(currentUser$ | async).displayName != 'Admin' && (currentUser$ | async) != null">
-            <div class="dropdown ml-3 mr-5" dropdown>
+        <ng-container *ngIf="(currentUser$ | async) != null">
+            <div class="dropdown ml-3 mr-5" dropdown *ngIf="(currentUser$ | async).displayName != 'Admin' else admin">
                 <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
                     <b style="font-weight: 900;">Welcome <i>{{(currentUser$ | async).displayName}}   </i></b>
                 </a>
@@ -39,29 +41,30 @@
                     </a>
                 </div>
             </div>
+            <ng-template #admin>
+                <div class="dropdown ml-3 mr-5" dropdown *ngIf="(currentUser$ | async) != null">
+                    <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
+                        <b style="font-weight: 900;">Admin</b>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *bsDropdownMenu>
+                        <a routerLink="/admin/orders" class="dropdown-item d-flex align-items-center py-2">
+                         Manage Orders
+                        </a>
+                        <a routerLink="/admin/products" class="dropdown-item d-flex align-items-center py-2">
+                             Manage Products
+                        </a>
+                        <a routerLink="/admin/add-product" class="dropdown-item d-flex align-items-center py-2">
+                            Add Product
+                        </a>
+                        <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
+                            <i class="fa fa-sign-out mr-3"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </ng-template>
         </ng-container>
 
-        <ng-container *ngIf="(currentUser$ | async).displayName == 'Admin'">
-            <div class="dropdown ml-3 mr-5" dropdown>
-                <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
-                    <b style="font-weight: 900;">Admin</b>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *bsDropdownMenu>
-                    <a routerLink="/admin/orders" class="dropdown-item d-flex align-items-center py-2">
-                     Manage Orders
-                    </a>
-                    <a routerLink="/admin/products" class="dropdown-item d-flex align-items-center py-2">
-                         Manage Products
-                    </a>
-                    <a routerLink="/admin/add-product" class="dropdown-item d-flex align-items-center py-2">
-                        Add Product
-                    </a>
-                    <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
-                        <i class="fa fa-sign-out mr-3"></i> Logout
-                    </a>
-                </div>
-            </div>
-        </ng-container>
+            
 
     </div>
 
