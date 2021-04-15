@@ -48,7 +48,7 @@ namespace Infrastructure.Data
 
         public async Task<List<Order>> GetOrders()
         {
-            var orders = await _context.Orders.Include(o=>o.OrderItems).Include(o=>o.DeliveryMethod).ToListAsync();
+            var orders = await _context.Orders.Include(o=>o.OrderItems).Include(o=>o.DeliveryMethod).Where(o => o.Status != OrderStatus.Shipped).ToListAsync();
             return orders;
         }
 
