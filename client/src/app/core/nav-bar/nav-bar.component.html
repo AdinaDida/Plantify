@@ -13,7 +13,7 @@
     
     
     <div class="d-flex align-items-center" >
-        <a routerLink='/basket' class="position-relative">
+        <a routerLink='/basket' class="position-relative" >
             <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
             <div *ngIf="(basket$ | async)" class="cart-no">{{(basket$ | async).items.length}}</div>
         </a>
@@ -44,18 +44,19 @@
             <ng-template #admin>
                 <div class="dropdown ml-3 mr-5" dropdown *ngIf="(currentUser$ | async) != null">
                     <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
-                        <b style="font-weight: 900;">Admin</b>
+                        <i style="font-weight: 900;">Admin</i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *bsDropdownMenu>
                         <a routerLink="/admin/orders" class="dropdown-item d-flex align-items-center py-2">
-                         Manage Orders
+                        Manage Orders
                         </a>
                         <a routerLink="/admin/products" class="dropdown-item d-flex align-items-center py-2">
-                             Manage Products
+                            Manage Products
                         </a>
                         <a routerLink="/admin/add-product" class="dropdown-item d-flex align-items-center py-2">
                             Add Product
                         </a>
+                        <div class="dropdown-divider"></div>
                         <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
                             <i class="fa fa-sign-out mr-3"></i> Logout
                         </a>
@@ -63,9 +64,6 @@
                 </div>
             </ng-template>
         </ng-container>
-
-            
-
     </div>
 
 </header>

@@ -4,14 +4,16 @@
             <table class="table table-hover" style="cursor: pointer;">
                 <thead class="thead-light">
                     <tr>
-                        <th>Product Name</th>
-                        <th>Product Brand</th>
-                        <th>Product Type</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Type</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let product of products">
+                        <td><img src="https://localhost:44376/{{product.pictureUrl}}" alt="{{product.name}}" class="img-fluid" style="max-height: 50px;"></td>
                         <td>{{product.name}}</td>
                         <td>{{product.productBrand.name}}</td>
                         <td>{{product.productType.name}}</td>

@@ -1,8 +1,7 @@
 <div class="container mt-5" style="margin-top:10px">
     <div class="row" id="post-review-box" >
         <div class="col-md-5 offset-3">
-            <h5 style="text-align:center">Leave a review:</h5>
-            <br>
+            <h5 style="text-align:center">Add product:</h5>
             <br>
             <div 
                 [formGroup]="productForm"
@@ -13,23 +12,29 @@
                     <br>
                     <textarea class="form-control animated" cols="50" id="new-review" name="comment"  formControlName="description" placeholder="Enter description here..." rows="5" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; width: auto;"></textarea>
                     <br>
-                    <input class="form-control" type="text" placeholder="Price" formControlName="price" style="width: 445px;" required>
+                    <input class="form-control" type="number" min="1" placeholder="Price" formControlName="price" style="width: 445px;" required>
                     <br>
-                    <input class="form-control" type="text" placeholder="Product image" formControlName="pictureUrl" style="width: 445px;" required>
+                    <div >
+                        <label for="img">Select image:</label>
+                        <input  class="form-control" formControlName="pictureUrl" type="file" id="img" name="img" accept="image/*" required>
+                    </div>
+                    <!-- <input class="form-control" type="text" placeholder="Product image" formControlName="pictureUrl" style="width: 445px;" required> -->
                     <br>
                     <select class="form-control" formControlName="productBrandId" style="height:45px;">
+                        <option [ngValue]="null" selected hidden disabled >Choose category</option>
                         <option *ngFor="let brand of productBrands" value="{{brand.id}}" >{{brand.name}}</option>
                         
-                      </select>                   
-                       <br>
+                    </select>                   
+                    <br>
                     <select class="form-control"formControlName="productTypeId" style="height:45px;">
+                        <option [ngValue]="null" selected hidden disabled>Choose product type</option>
                         <option  *ngFor="let type of productTypes" value="{{type.id}}" selected>{{type.name}}</option>
-                      </select>
-                      <br>
+                    </select>
+                    <br>
                     <div class="text-right">
                         <br>
                         <div class="stars starrr" data-rating="0"><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span></div>
-                        <button class="btn btn-danger btn-sm"  (click)="onCancel()" type="submit">Cancel</button>
+                        <button class="btn btn-dark btn-sm"  (click)="onCancel()" type="submit">Cancel</button>
                         <button [disabled]="productForm.invalid" class="btn btn-success btn-sm" style="margin-left:10px" type="submit" (click)="createProduct()">Save</button>
                     </div>
             </div>

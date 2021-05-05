@@ -46,14 +46,13 @@ export class AdminProductFormComponent implements OnInit {
     this.product = {
       name : this.productForm.get('name').value,
       description : this.productForm.get('description').value,
-      pictureUrl : this.productForm.get('pictureUrl').value,
+      pictureUrl : "images/products/flowers/" + this.productForm.get('pictureUrl').value.match(/[^\\/]*$/)[0],
       price : +this.productForm.get('price').value,
       productTypeId : +this.productForm.get('productTypeId').value,
       productBrandId : +this.productForm.get('productBrandId').value,
     }
     this.adminService.createProduct(this.product).toPromise();
     this.productForm.reset();
-    
     }
 
     getProductBrands(){
@@ -63,6 +62,5 @@ export class AdminProductFormComponent implements OnInit {
     getProductTypes(){
       this.shopService.getTypes().subscribe(types => this.productTypes = types);
     }
-   
 
 }
