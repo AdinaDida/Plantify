@@ -18,8 +18,8 @@ namespace Infrastructure.Services
         {
             _config = config;
         }
-        
-        public void SendMessage(string msg) 
+
+        public void SendMessage(string msg)
         {
             string accountSid =  _config["TWILIO_ACCOUNT_SID"];
             string authToken = _config["TWILIO_AUTH_TOKEN"];
@@ -28,14 +28,11 @@ namespace Infrastructure.Services
 
             var message = MessageResource.Create(
                 body: msg,
-                from: new Twilio.Types.PhoneNumber("+18439000731"),
-                to: new Twilio.Types.PhoneNumber("+40737807858")
+                from: new Twilio.Types.PhoneNumber("+12099008275"),
+                to: new Twilio.Types.PhoneNumber("+40747514366")
             );
 
             Console.WriteLine(message.Sid);
         }
-
-
-        
     }
 }

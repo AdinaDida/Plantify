@@ -22,6 +22,10 @@ const routes: Routes = [
     data: { breadcrumb: 'Basket' }
   },
   {
+    path: 'admin', loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
+    data: { breadcrumb: 'Admin' }
+  },
+  {
     path: 'checkout', 
     canActivate: [AuthGuard],
     loadChildren: () => import('./checkout/checkout.module').then(mod => mod.CheckoutModule),
