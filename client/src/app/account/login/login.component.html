@@ -8,13 +8,11 @@
             <app-text-input formControlName="email" [label]="'Email address'"></app-text-input>
             <app-text-input formControlName="password" [label]="'Password'" [type]="'password'"></app-text-input>
 
-            <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button [disabled]="loginForm.invalid" class="btn btn-primary btn-block" type="submit">Sign in</button>
             <br>
             <p>Don't have an account? <a routerLink="/account/register">Register now</a></p>
-            <br>
             <p class="mt-5 mb-3 text-muted text-center">©2021</p>
         </form>
-
     </div>
 </div>
 

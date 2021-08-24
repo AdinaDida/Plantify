@@ -143,7 +143,7 @@ namespace API.Controllers
                                                                             "<span style='font-size: 18px;color: #005018;'>Please verify your email address to</span>" +
                                                                             "<span style='color: #000000; font-size: 18px; font-family: arial,helvetica,sans-serif'> get access to thousands of beautiful plants at</span>" +
                                                                             "<span style='font-size: 18px'>.</span>" +
-                                                                           " <div class='align-text-center' style='font-size:20px;margin-top:30px;color: #005018;'><strong>Plantify Store</strong></div>" +
+                                                                            " <div class='align-text-center' style='font-size:20px;margin-top:30px;color: #005018;'><strong>Plantify Store</strong></div>" +
                                                                         "</div> " +
                                                                         "<div style='font-family: inherit; text-align: center'>" +
                                                                             "<span style='color: black; font-size: 18px'>" +

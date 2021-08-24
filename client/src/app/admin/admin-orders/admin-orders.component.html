@@ -24,7 +24,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *bsDropdownMenu>
                                     <a *ngIf="order.status == 'Pending'" (click)="changeStatus(order.id, 1)"class="dropdown-item d-flex align-items-center py-2">
-                                         Payment Accepted
+                                        Payment Accepted
                                     </a>
                                     <a *ngIf="order.status == 'Pending' || order.status == 'Payment Received' " (click)="changeStatus(order.id, 3)" class="dropdown-item d-flex align-items-center py-2">
                                         Confirmed
@@ -34,8 +34,8 @@
                                     </a>
                                 </div>
                             </div> -->
-                            <button *ngIf="order.status == 'Pending' || order.status == 'Payment Received'" class="btn btn-dark"><a (click)="changeStatus(order.id, 3)">Confirm Order</a></button>
-                            <button *ngIf="order.status == 'Confirmed' "  class="btn btn-dark"><a (click)="changeStatus(order.id, 4)" >Order Shipped</a></button>
+                            <button *ngIf="order.status == 'Pending' || order.status == 'Payment Received'" class="btn btn-outline-success"><a (click)="changeStatus(order.id, 3)">Confirm Order</a></button>
+                            <button *ngIf="order.status == 'Confirmed' "  class="btn btn-outline-dark" style="margin-left: 15px;"><a (click)="changeStatus(order.id, 4)">Ship Order</a></button>
 
                         </td>
                     </tr>

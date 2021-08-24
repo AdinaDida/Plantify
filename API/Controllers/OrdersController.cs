@@ -300,7 +300,7 @@ namespace API.Controllers
                                                     "<tbody> " +
                                                         "<tr> " +
                                                             "<td align='center' bgcolor='#ffecea' class='inner-td' style='border-radius:6px; font-size:16px; text-align:center; background-color:inherit;'> " +
-                                                                "<a href='http://localhost:4200/' style='background-color:black; border:1px solid black; border-color:#ffecea; border-radius:0px; border-width:1px; color:white; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
+                                                                "<a href='https://localhost:4200/' style='background-color:black; border:1px solid black; border-color:#ffecea; border-radius:0px; border-width:1px; color:white; display:inline-block; font-size:12px; font-weight:700; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;' target='_blank'>Shop Online</a> " +
                                                             "</td> " +
                                                         "</tr> " +
                                                     "</tbody> " +
