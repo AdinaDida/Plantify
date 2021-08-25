@@ -88,7 +88,7 @@ namespace Infrastructure.Services
             return basket;
 
         }
-        public async Task<Core.Models.OrderAggregate.Order> UpdateOrderPaymentFailed(string paymentIntentId)
+        public async Task<Order> UpdateOrderPaymentFailed(string paymentIntentId)
         {
             var spec = new OrderByPaymentIntentWithItemsSpecification(paymentIntentId);
             var order = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);

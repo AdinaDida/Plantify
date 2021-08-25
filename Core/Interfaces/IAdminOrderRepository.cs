@@ -16,8 +16,5 @@ namespace Core.Interfaces
         Task<Product> GetProductById(int id);
         Task<Product> DeleteProductById(int id);
         Task<List<Product>> GetProducts();
-
-
-
     }
 }
