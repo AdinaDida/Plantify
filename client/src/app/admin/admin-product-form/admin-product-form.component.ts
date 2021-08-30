@@ -5,6 +5,7 @@ import { IBrand } from 'src/app/models/productBrand';
 import { IType } from 'src/app/models/productType';
 import { ShopService } from 'src/app/shop/shop.service';
 import { AdminService } from '../admin.service';
+import Modal from 'sweetalert2'
 
 @Component({
   selector: 'app-admin-product-form',
@@ -53,6 +54,13 @@ export class AdminProductFormComponent implements OnInit {
     }
     this.adminService.createProduct(this.product).toPromise();
     this.productForm.reset();
+    Modal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your item has been saved!',
+      showConfirmButton: false,
+      timer: 1000
+    });
     }
 
     getProductBrands(){
