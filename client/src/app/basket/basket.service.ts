@@ -131,7 +131,7 @@ export class BasketService {
   }
 
   private addOrUpdateItem(items: IBasketItem[], itemToAdd: IBasketItem, quantity: number): IBasketItem[] {
-    console.log(items);
+    //console.log(items);
     const index = items.findIndex(i => i.id === itemToAdd.id);
     if (index === -1) {
       itemToAdd.quantity = quantity;
@@ -147,8 +147,8 @@ export class BasketService {
     const shipping = this.shipping;
     const subtotal = basket.items.reduce((a, b) => (b.price * b.quantity) + a, 0);
     const total = subtotal + shipping;
-    // const totalProducts = basket.items.reduce((a, b) => b.quantity + a, 0);
-    this.basketTotalSource.next({shipping, total, subtotal});
+    const totalProducts = basket.items.reduce((a, b) => b.quantity + a, 0);
+    this.basketTotalSource.next({shipping, total, subtotal, totalProducts});
   }
 
 }

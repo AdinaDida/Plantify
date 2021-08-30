@@ -3,7 +3,7 @@ import { SubscribableOrPromise } from 'rxjs';
 import { Observable } from 'rxjs';
 import { AccountService } from 'src/app/account/account.service';
 import { BasketService } from 'src/app/basket/basket.service';
-import { IBasket } from 'src/app/models/basket';
+import { IBasket, IBasketTotals } from 'src/app/models/basket';
 import { IUser } from 'src/app/models/user';
 
 @Component({
@@ -14,20 +14,19 @@ import { IUser } from 'src/app/models/user';
 export class NavBarComponent implements OnInit {
   basket$: Observable<IBasket>;
   currentUser$: Observable<IUser>;
-  // totalProducts;
+  totalProducts$: Observable<IBasketTotals>;;
 
   constructor(private basketService: BasketService, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
     this.currentUser$ = this.accountService.currentUser$;
-    // this.totalProducts = this.basketService.basketTotal$.subscribe(x => console.log(x.totalProducts));
+    this.totalProducts$ = this.basketService.basketTotal$;
   }
 
   logout(){
     this.accountService.logout();
   }
-
 
 
 }
