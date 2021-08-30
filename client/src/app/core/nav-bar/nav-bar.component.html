@@ -6,25 +6,31 @@
     <nav class="my-2 my-md-0 me-md-3">
         <a class="p-2 " routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
         <a class="p-2 " routerLink="/shop" routerLinkActive="active"> Shop</a>
-        
-        <!-- <a class="p-2 "routerLink="/test-error" routerLinkActive="active" href="#">Errors</a> -->
     </nav>
     
     
     
     <div class="d-flex align-items-center" >
-        <a routerLink='/basket' class="position-relative" >
+        <!-- <a routerLink='/basket' class="position-relative" >
             <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
             <div *ngIf="(basket$ | async)" class="cart-no">{{(basket$ | async).items.length}}</div>
-        </a>
+        </a> -->
 
         <ng-container *ngIf="(currentUser$ | async) === null">
+            <a routerLink='/basket' class="position-relative" >
+                <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
+                <div *ngIf="(basket$ | async)" class="cart-no">{{(basket$ | async).items.length}}</div>
+            </a>
             <a routerLink="/account/login" class="btn btn-outline-secondary mr-2">Login</a>
             <a routerLink="/account/register" class="btn btn-outline-secondary mr-3">Register</a>
         </ng-container>
 
         <ng-container *ngIf="(currentUser$ | async) != null">
             <div class="dropdown ml-3 mr-5" dropdown *ngIf="(currentUser$ | async).displayName != 'Admin' else admin">
+                <a routerLink='/basket' class="position-relative" >
+                    <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
+                    <div *ngIf="(basket$ | async)" class="cart-no">{{(basket$ | async).items.length}}</div>
+                </a>
                 <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
                     <b style="font-weight: 900;">Welcome <i>{{(currentUser$ | async).displayName}}   </i></b>
                 </a>

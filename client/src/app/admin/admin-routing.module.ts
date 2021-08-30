@@ -9,9 +9,9 @@ import { AdminProductFormComponent } from './admin-product-form/admin-product-fo
 const routes:Routes = 
 [
   {path:'', component:AdminComponent},
-  {path: 'orders', component: AdminOrdersComponent, data: {breadcrumb: {alias: 'Orders'}}},
-  {path: 'products', component: AdminProductsComponent, data: {breadcrumb: {alias: 'Products'}}},
-  {path: 'add-product', component: AdminProductFormComponent, data: {breadcrumb: {alias: 'Add Product'}}}
+  {path: 'orders', component: AdminOrdersComponent, data: {breadcrumb: 'Orders'}},
+  {path: 'products', component: AdminProductsComponent, data: {breadcrumb: 'Products'}},
+  {path: 'add-product', component: AdminProductFormComponent, data: {breadcrumb: 'Add Product'}}
 ]
 
 @NgModule({
