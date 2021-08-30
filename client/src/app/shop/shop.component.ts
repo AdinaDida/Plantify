@@ -105,4 +105,8 @@ export class ShopComponent implements OnInit {
     this.shopService.setShopParams(this.shopParams);
     this.getProducts();
   }
+
+  setFocus() { 
+    this.searchTerm.nativeElement.focus();
+  }
 }
