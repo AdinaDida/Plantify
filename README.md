@@ -48,3 +48,15 @@
 ### Get SMS notification for order
 
 ![](ImgForREADME/order_sms.png)
+
+### Add products from admin page
+
+![](ImgForREADME/add_products.gif)
+
+### Change orders status from admin page
+
+![](ImgForREADME/change_status.gif)
+
+### View orders history from admin page
+
+![](ImgForREADME/history.gif)
