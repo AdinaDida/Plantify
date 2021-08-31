@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IOrder } from 'src/app/models/order';
 import { AdminService } from '../admin.service';
+import Modal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-orders',
@@ -27,5 +28,28 @@ export class AdminOrdersComponent implements OnInit {
   changeStatus(id, status)
   {
     this.adminService.changeOrderStatus(id, status).toPromise().then(x => this.getOrders());
+  }
+
+  confirmChangeStatus(id, status){
+    Modal.fire({
+      title: 'Are you sure you want to change this status?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#4bbf73',
+      cancelButtonColor: '#343a40',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.changeStatus(id, status);
+        Modal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Status changed!',
+          showConfirmButton: false,
+          timer: 800
+        });
+      } 
+    })
   }
 }

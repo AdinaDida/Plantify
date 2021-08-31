@@ -49,7 +49,7 @@ export class BasketComponent implements OnInit {
           icon: 'success',
           title: 'Removed!',
           showConfirmButton: false,
-          timer: 700
+          timer: 600
         });
       } 
     })

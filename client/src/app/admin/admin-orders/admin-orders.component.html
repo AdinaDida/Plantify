@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12">
-            <table class="table table-hover" style="cursor: pointer;">
+            <table class="table table-hover" style="cursor: pointer; text-align: center;">
                 <thead class="thead-light">
                     <tr>
                         <th>Order</th>
@@ -13,30 +13,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let order of orders">
-                        <th># {{order.id}}</th>
+                        <td class="zoom" routerLink="/admin/order/{{order.id}}"><strong>#{{order.id}}</strong></td>
                         <td>{{order.orderDate | date: 'medium'}}</td>
                         <td>{{order.total | currency}}</td>
                         <td>{{order.status}}</td>
                         <td>
-                            <!-- <div class="dropdown ml-3 mr-5" dropdown>
-                                <a class="dropdown-toggle" style="cursor: pointer;" dropdownToggle>
-                                    <b style="font-weight: 900;">Change Status</b>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" style="cursor: pointer;" *bsDropdownMenu>
-                                    <a *ngIf="order.status == 'Pending'" (click)="changeStatus(order.id, 1)"class="dropdown-item d-flex align-items-center py-2">
-                                        Payment Accepted
-                                    </a>
-                                    <a *ngIf="order.status == 'Pending' || order.status == 'Payment Received' " (click)="changeStatus(order.id, 3)" class="dropdown-item d-flex align-items-center py-2">
-                                        Confirmed
-                                    </a>
-                                    <a *ngIf="order.status == 'Confirmed' " (click)="changeStatus(order.id, 4)" class="dropdown-item d-flex align-items-center py-2">
-                                        Shipped
-                                    </a>
-                                </div>
-                            </div> -->
-                            <button *ngIf="order.status == 'Pending' || order.status == 'Payment Received'" class="btn btn-outline-success"><a (click)="changeStatus(order.id, 3)">Confirm Order</a></button>
-                            <button *ngIf="order.status == 'Confirmed' "  class="btn btn-outline-dark" style="margin-left: 15px;"><a (click)="changeStatus(order.id, 4)">Ship Order</a></button>
-
+                            <button *ngIf="order.status == 'Pending' || order.status == 'Payment Received'" class="btn btn-outline-dark"><a (click)="confirmChangeStatus(order.id, 3)">Confirm Order</a></button>
+                            <button *ngIf="order.status == 'Confirmed' "  class="btn btn-outline-secondary"><a (click)="confirmChangeStatus(order.id, 4)">Ship Order</a></button>
+                            <button *ngIf="order.status == 'Shipped' "  class="btn btn-outline-success"><a (click)="confirmChangeStatus(order.id, 5)">Finish Order</a></button>
                         </td>
                     </tr>
                 </tbody>

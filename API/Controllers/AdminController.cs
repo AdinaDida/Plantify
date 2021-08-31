@@ -1,4 +1,5 @@
 ﻿using API.Dtos;
+using API.Errors;
 using API.Extensions;
 using AutoMapper;
 using Core.Interfaces;
@@ -34,10 +35,13 @@ namespace API.Controllers
         [HttpPatch("order/{id}/{status}")]
         public async Task<ActionResult<Order>> ConfirmOrderById(int id, int status)
         {
-            var email = User.RetrieveEmailFromPrincipal();
+            //var email = User.RetrieveEmailFromPrincipal();
             OrderStatus orderStatus = (OrderStatus)status;
-            _messagingService.SendMessage($"The status for your order #{id} is now {orderStatus}.");
-            await _mailService.SendEmailAsync(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
+            //if(!orderStatus.Equals("Finished"))
+            //{
+            //    _messagingService.SendMessage($"The status for your order #{id} is now {orderStatus}.");
+                //await _mailService.SendEmailAsync(email, $"Order {orderStatus}", $"<h1>Thank you for your order!</h1><p>Your order #{id} now has the status ${orderStatus}" + DateTime.Now + "</p>");
+            //}
             return await _rep.ChangeOrderStatus(id, orderStatus);
         }
         //[Route("/api/admin/product/{id}")]
@@ -45,6 +49,13 @@ namespace API.Controllers
         public async Task<Product> GetProductById(int id)
         {
             return await _rep.GetProductById(id);
+        }
+
+
+        [HttpGet("order/{id}")]
+        public async Task<Order> GetOrderById(int id)
+        {
+            return await _rep.GetOrderById(id);
         }
 
         [HttpGet("orders")]
@@ -57,6 +68,18 @@ namespace API.Controllers
             }
             return _mapper.Map<IReadOnlyList<OrderToReturnDto>>(orders);
         }
+
+        [HttpGet("orders/finished")]
+        public async Task<IReadOnlyList<OrderToReturnDto>> GetFinishedOrders()
+        {
+            var orders = await _rep.GetFinishedOrders();
+            foreach (var order in orders)
+            {
+                order.GetTotal();
+            }
+            return _mapper.Map<IReadOnlyList<OrderToReturnDto>>(orders);
+        }
+
         //[Route("/api/admin/product")]
         [HttpPost("product")]
         public async Task<Product> AddProduct([FromBody] Product product)

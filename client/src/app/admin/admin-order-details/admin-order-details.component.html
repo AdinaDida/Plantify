@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="row" *ngIf="order">
+        <div class="col-8">
+            <div  class="table-responsive">
+                <table class="table table-borderless">
+                    <thead class=" thead-light border-0 py-2">
+                        <tr style="text-align: center;">
+                            <th scope="col" >
+                                <div class="py-2 text-uppercase">Product</div>
+                            </th>
+                            <th scope="col" >
+                                <div class="py-2 text-uppercase">Name</div>
+                            </th>
+                            <th scope="col" >
+                                <div class="py-2 text-uppercase">Price</div>
+                            </th>
+                            <th scope="col" >
+                                <div class="py-2 text-uppercase">Quantity</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of order.orderItems" style="text-align: center;">
+                            <td scope="row">
+                                <div class="p-2 d-flex">
+                                    <img src="https://localhost:44376/{{item.itemOrdered.pictureUrl}}" alt="{{item.itemOrdered.productName}}" class="img-fluid" style="max-height: 50px;">
+                                </div>
+                            </td>
+                            <td class="align-middle"><h5>{{item.itemOrdered.productName}}</h5></td>
+                            <td class="align-middle"><strong>{{item.price | currency}}</strong></td>
+                            <td class="align-middle font-weight-bold" style="font-size: 1.5em;"> {{item.quantity}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="bg-light px-4 text-uppercase font-weight-bold" style="padding: 1.20em;">
+                Order Summary
+            </div>
+            <div class="p-4">
+                <div class="font-italic mb-4 d-flex justify-content-between">
+                    <strong class="text-muted">Buyer Email</strong>
+                    <strong>{{order.buyerEmail}}</strong>
+                </div>
+                <ul class="list-unstyled mb-4">
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                        <strong class="text-muted">Order subtotal</strong>
+                        <strong>{{order.subtotal | currency}}</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                        <strong class="text-muted">Shipping and handling</strong>
+                        <strong>{{order.deliveryMethod.price | currency}}</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom">
+                        <strong class="text-muted">Total</strong>
+                        <strong>{{(order.subtotal + order.deliveryMethod.price) | currency}}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> 

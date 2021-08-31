@@ -12,9 +12,11 @@ namespace Core.Interfaces
     {
         Task<Order> ChangeOrderStatus(int id, OrderStatus status);
         Task<List<Order>> GetOrders();
+        Task<List<Order>> GetFinishedOrders();
         Task<Product> AddProduct(Product product);
         Task<Product> GetProductById(int id);
         Task<Product> DeleteProductById(int id);
         Task<List<Product>> GetProducts();
+        Task<Order> GetOrderById(int id);
     }
 }

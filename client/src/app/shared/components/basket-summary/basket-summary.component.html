@@ -2,9 +2,12 @@
     <div  class="table-responsive">
         <table class="table table-borderless">
             <thead [class.thead-light]="isBasket || isOrder" class="border-0 py-2">
-                <tr>
+                <tr style="text-align: center;">
                     <th scope="col" >
-                        <div class="p-2 px-3 text-uppercase">Product</div>
+                        <div class="py-2 text-uppercase">Product</div>
+                    </th>
+                    <th scope="col" >
+                        <div class="py-2 text-uppercase">Name</div>
                     </th>
                     <th scope="col" >
                         <div class="py-2 text-uppercase">Price</div>
@@ -22,17 +25,19 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of items">
-                    <th scope="row">
+                    <td scope="row">
                         <div class="p-2 d-flex">
                             <img src="{{item.pictureUrl}}" alt="{{item.productName}}" class="img-fluid" style="max-height: 50px;">
-                            <div class="ml-3 d-inline-block align-middle">
-                                <h5 class="mb-0">
-                                    <a routerLink="/shop/{{item.id || item.productId}}" class="text-dark">{{item.productName}}</a>
-                                </h5>
-                                <span *ngIf="item.type" class="text-muted font-weight-normal font-italic d-block">Type: {{item.type}}</span>
-                            </div>
                         </div>
-                    </th>
+                    </td>
+                    <td>
+                        <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0">
+                            <a routerLink="/shop/{{item.id || item.productId}}" class="text-dark">{{item.productName}}</a>
+                        </h5>
+                        <span *ngIf="item.type" class="text-muted font-weight-normal font-italic d-block">Type: {{item.type}}</span>
+                        </div>
+                    </td>
                     <td class="align-middle"><strong>{{item.price | currency}}</strong></td>
                     <td class="align-middle">
                         <div class="d-flex justify-content-start align-items-center" [class.justify-cotent-center]="!isBasket">
@@ -41,9 +46,9 @@
                             <i *ngIf="isBasket" (click)="incrementItemQuantity(item)" class="fa fa-plus-circle text-success mx-2" style="cursor: pointer; font-size: 1.5em;"></i>                                                
                         </div>
                 </td>
-                <td class="align-middle"><strong>{{item.price * item.quantity | currency}}</strong></td>
-                <td class="align-middle text-center">
-                    <a *ngIf="isBasket" class="text-danger"><i (click)="removeBasketItem(item)" class="fa fa-trash" style="font-size: 2em; cursor: pointer; "></i></a>
+                <td class="align-middle" ><strong>{{item.price * item.quantity | currency}}</strong></td>
+                <td class="align-middle text-center" *ngIf="isBasket">
+                    <a class="text-danger"><i (click)="removeBasketItem(item)" class="fa fa-trash" style="font-size: 2em; cursor: pointer; "></i></a>
                 </td>
                 </tr>
             </tbody>

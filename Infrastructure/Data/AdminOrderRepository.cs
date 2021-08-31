@@ -48,7 +48,13 @@ namespace Infrastructure.Data
 
         public async Task<List<Order>> GetOrders()
         {
-            var orders = await _context.Orders.Include(o=>o.OrderItems).Include(o=>o.DeliveryMethod).Where(o => o.Status != OrderStatus.Shipped).ToListAsync();
+            var orders = await _context.Orders.Include(o=>o.OrderItems).Include(o=>o.DeliveryMethod).Where(o => o.Status != OrderStatus.Finished).ToListAsync();
+            return orders;
+        }
+
+        public async Task<List<Order>> GetFinishedOrders()
+        {
+            var orders = await _context.Orders.Include(o => o.OrderItems).Include(o => o.DeliveryMethod).Where(o => o.Status == OrderStatus.Finished).ToListAsync();
             return orders;
         }
 
@@ -63,6 +69,13 @@ namespace Infrastructure.Data
             var products = await _context.Products.Include(p => p.ProductBrand).Include(p => p.ProductType).Include(p=>p.ProductReviews).ToListAsync();
             var product = products.Where(p => p.Id == id).FirstOrDefault();
             return product;
+        }
+
+        public async Task<Order> GetOrderById(int id)
+        {
+            var orders = await _context.Orders.Include(o => o.OrderItems).Include(o => o.DeliveryMethod).ToListAsync();
+            var order = orders.Where(p => p.Id == id).FirstOrDefault();
+            return order;
         }
     }
 }

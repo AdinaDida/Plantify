@@ -1,0 +1,13 @@
+.zoom {
+    transition: transform .2s;
+    cursor:pointer;
+}
+
+.zoom:hover {
+    transform: scale(1.5);
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}

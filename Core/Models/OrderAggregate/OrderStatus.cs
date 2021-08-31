@@ -18,5 +18,8 @@ namespace Core.Models.OrderAggregate
 
         [EnumMember(Value = "Shipped")]
         Shipped,
+
+        [EnumMember(Value = "Finished")]
+        Finished,
     }
 }

@@ -28,6 +28,15 @@ export class AdminService {
   deleteProduct(id){
     return this.http.delete<IProduct>(this.baseUrl + 'admin/delete-product/' + id);
   }
+
+  getFinishedOrders(){
+    return this.http.get<IOrder[]>(this.baseUrl + 'admin/orders/finished');
+  }
+
+  getOrderDetails(id) {
+    return this.http.get<IOrder>(this.baseUrl + 'admin/order/' + id);
+  }
+
 }
 
 
